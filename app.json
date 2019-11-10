@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/goods/goods",
+    "pages/users/users",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "Store",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/goods/goods",
+        "text": "货品",
+        "iconPath": "images/tab/a1.png",
+        "selectedIconPath": "images/tab/a.png"
+      },
+      {
+        "pagePath": "pages/users/users",
+        "text": "用户",
+        "iconPath": "images/tab/b.png",
+        "selectedIconPath": "images/tab/b1.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
