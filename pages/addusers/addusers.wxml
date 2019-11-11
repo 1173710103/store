@@ -1,0 +1,24 @@
+<!--pages/addusers/addusers.wxml-->
+<view class="page-body">
+  <view class="page-section">
+    <label class="weui-cells__title">姓名:</label>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="客户姓名"/>
+      </view>
+    </view>
+  </view>
+  <view class="page-section">
+    <label class="weui-cells__title">年龄:</label>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" maxlength="3" placeholder="最大小于一百" />
+      </view>
+    </view>
+  </view>
+</view>
+<view class = 'buttons'>
+  <button class = 'confirm' bindtap='confirm'>确认</button>
+  <button class = 'cancle' bindtap='cancle'>取消</button>
+</view>
+

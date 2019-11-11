@@ -1,0 +1,19 @@
+/* pages/addgoods/addgoods.wxss */
+.page-section{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+.buttons{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+.confirm{
+  width: 30%;
+  margin-top: 20rpx;
+}
+.cancle{
+  width: 30%;
+  margin-top: 20rpx;
+}

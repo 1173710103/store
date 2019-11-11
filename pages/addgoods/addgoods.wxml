@@ -1,0 +1,24 @@
+<!--pages/addgoods/addgoods.wxml-->
+<view class="page-body">
+  <view class="page-section">
+    <label class="weui-cells__title">名称:</label>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="货品名称"/>
+      </view>
+    </view>
+  </view>
+  <view class="page-section">
+    <label class="weui-cells__title">价格:</label>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" maxlength="10" placeholder="最大小于十万" />
+      </view>
+    </view>
+  </view>
+</view>
+<view class = 'buttons'>
+  <button class = 'confirm' bindtap='confirm'>确认</button>
+  <button class = 'cancle' bindtap='cancle'>取消</button>
+</view>
+
