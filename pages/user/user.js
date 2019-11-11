@@ -1,48 +1,28 @@
-// pages/addgoods/addgoods.js
+// pages/user/user.js
 
-var app = getApp()
-
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    name:'',
-    price:''
-  },
-
-  input_name:function(in_name){
-    this.setData({
-      name: in_name.detail.value
-    })
-  },
-
-  input_price:function (in_price) {
-    this.setData({
-      price: in_price.detail.value
-    })
-  },
-
-  confirm: function () {
-    var i = app.data.list_goods.length;
-    app.data.msg_goods.price = this.data.price;
-    app.data.msg_goods.carid = this.data.name;
-    app.data.msg_goods.msgText = '序号000' + i;
-    app.data.msg_goods.id = 'id-' + i + 1;
-    app.data.msg_goods.headerImg = '../../images/tab/a1.png';
-    app.data.msg_goods.siteImg = '../../img/site.png';
-    app.data.list_goods.push(app.data.msg_goods);
-    wx.navigateBack({
-
-    })
+    id: app.data.user_id,
+    msg_users: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      id: app.data.user_id
+    });
+    var msg = app.data.list_users[parseInt(this.data.id) - 1];
+    this.setData({
+      msg_users: msg
+    })
+    console.log(msg);
   },
 
   /**

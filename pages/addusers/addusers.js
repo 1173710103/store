@@ -1,4 +1,6 @@
 // pages/addusers/addusers.js
+
+var app = getApp();
 Page({
 
   /**
@@ -16,12 +18,21 @@ Page({
   },
 
   input_age: function (in_age) {
-    this.data.age = in_age.detail.value
+    this.setData({
+      age: in_age.detail.value
+    })
   },
 
   confirm: function () {
-    console.log("name:" + this.data.name)
-    console.log("age:" + this.data.age)
+    console.log(this.data.name)
+    var i = app.data.list_users.length;
+    app.data.msg_users.age = this.data.age;
+    app.data.msg_users.carid = this.data.name;
+    app.data.msg_users.msgText = '序号000' + i;
+    app.data.msg_users.id = 'id-' + i + 1;
+    app.data.msg_users.headerImg = '../../images/tab/b.png';
+    app.data.msg_users.siteImg = '../../img/site.png';
+    app.data.list_users.push(app.data.msg_users);
     wx.navigateBack({
 
     })

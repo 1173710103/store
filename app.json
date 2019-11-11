@@ -4,6 +4,8 @@
     "pages/users/users",
     "pages/addgoods/addgoods",
     "pages/addusers/addusers",
+    "pages/good/good",
+    "pages/user/user",
     "pages/index/index",
     "pages/logs/logs"
   ],

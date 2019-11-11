@@ -1,0 +1,5 @@
+<!--pages/user/user.wxml-->
+<view>
+  <text>姓名:{{msg_users.carid}}</text>
+  <text>年龄:{{msg_users.age}}</text>
+</view>
