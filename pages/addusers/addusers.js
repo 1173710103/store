@@ -8,12 +8,7 @@ Page({
 
   },
   confirm:function(){
-    
-  },
-  cancle:function(){
-    wx.navigateBack({
 
-    })
   },
 
   /**

@@ -10,10 +10,6 @@
   margin-top: 20rpx;
 }
 .confirm{
-  width: 30%;
-  margin-top: 20rpx;
-}
-.cancle{
-  width: 30%;
+  width: 80%;
   margin-top: 20rpx;
 }

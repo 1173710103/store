@@ -5,15 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    name : "",
+    price : ""
   },
+
+  input_name:function(in_name){
+    console.log(in_name.detail.value)
+    name : in_name.detail.value
+  },
+
+  input_price:function (in_price) {
+    console.log(in_price.detail.value)
+    price : in_price.detail.value
+  },
+
   confirm: function () {
-    
-  },
-  cancle: function () {
-    wx.navigateBack({
-
-    })
+    console.log(this.data.name),
+    console.log(this.data.price)
   },
 
   /**

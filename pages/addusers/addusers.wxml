@@ -19,6 +19,5 @@
 </view>
 <view class = 'buttons'>
   <button class = 'confirm' bindtap='confirm'>确认</button>
-  <button class = 'cancle' bindtap='cancle'>取消</button>
 </view>
 
