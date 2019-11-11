@@ -2,22 +2,13 @@
 <view class="page-body">
   <view class="page-section">
     <label class="weui-cells__title">姓名:</label>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input" auto-focus placeholder="客户姓名"/>
-      </view>
-    </view>
+    <input class="input_name" bindinput ='input_name' auto-focus placeholder="客户姓名"/>
   </view>
   <view class="page-section">
-    <label class="weui-cells__title">年龄:</label>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input" maxlength="3" placeholder="最大小于一百" />
-      </view>
-    </view>
+    <label class="weui-cells__title">年龄(岁):</label>
+    <input class="input_age" bindinput='input_age' maxlength="3" type="number" placeholder="最大小于100" />
   </view>
 </view>
 <view class = 'buttons'>
   <button class = 'confirm' bindtap='confirm'>确认</button>
 </view>
-

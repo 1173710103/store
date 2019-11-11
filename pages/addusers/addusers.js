@@ -5,10 +5,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    name: '',
+    age: ''
   },
-  confirm:function(){
 
+  input_name: function (in_name) {
+    this.setData({
+      name: in_name.detail.value
+    })
+  },
+
+  input_age: function (in_age) {
+    this.data.age = in_age.detail.value
+  },
+
+  confirm: function () {
+    console.log("name:" + this.data.name)
+    console.log("age:" + this.data.age)
+    wx.navigateBack({
+
+    })
   },
 
   /**
