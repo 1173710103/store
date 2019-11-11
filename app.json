@@ -2,14 +2,16 @@
   "pages": [
     "pages/goods/goods",
     "pages/users/users",
+    "pages/addgoods/addgoods",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000000",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#eee",
     "navigationBarTitleText": "Store",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black",
+    "backgroundColor" : "#eee"
   },
   "tabBar": {
     "position": "bottom",

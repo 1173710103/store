@@ -1,2 +1,4 @@
 <!--pages/goods/goods.wxml-->
-<text>pages/goods/goods.wxml</text>
+<view>
+  <button type = 'primary' bindtap='add'>+</button>
+</view>
