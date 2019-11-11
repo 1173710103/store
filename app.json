@@ -3,6 +3,7 @@
     "pages/goods/goods",
     "pages/users/users",
     "pages/addgoods/addgoods",
+    "pages/addusers/addusers",
     "pages/index/index",
     "pages/logs/logs"
   ],

@@ -1,1 +1,7 @@
 /* pages/users/users.wxss */
+.addbtn{
+  width: 80%;
+  margin-top: 30rpx;
+  /* background-color: rgb(13, 226, 84); */
+  /* color: #FFF; */
+}

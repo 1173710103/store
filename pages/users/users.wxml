@@ -1,2 +1,4 @@
 <!--pages/users/users.wxml-->
-<text>pages/users/users.wxml</text>
+<view>
+  <button class = 'addbtn' bindtap='add'>+</button>
+</view>
