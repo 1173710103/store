@@ -29,7 +29,7 @@ Page({
     msg_users.age = this.data.age;
     msg_users.carid = this.data.name;
     msg_users.msgText = '序号000' + i;
-    msg_users.id = 'id-' + i + 1;
+    msg_users.id = i;
     msg_users.headerImg = '../../images/tab/b.png';
     msg_users.siteImg = '../../img/site.png';
     app.data.list_users.push(msg_users);

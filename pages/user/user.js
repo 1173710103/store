@@ -18,7 +18,7 @@ Page({
     this.setData({
       id: app.data.user_id
     });
-    var msg = app.data.list_users[parseInt(this.data.id) - 1];
+    var msg = app.data.list_users[parseInt(this.data.id)];
     this.setData({
       msg_users: msg
     })
