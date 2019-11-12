@@ -2,8 +2,6 @@
 App({
   data: {
     deviceInfo: {},
-    msg_goods: {},
-    msg_users:{},
     list_goods:[],
     list_users:[],
     good_id:'',

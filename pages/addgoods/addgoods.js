@@ -26,13 +26,14 @@ Page({
 
   confirm: function () {
     var i = app.data.list_goods.length;
-    app.data.msg_goods.price = this.data.price;
-    app.data.msg_goods.carid = this.data.name;
-    app.data.msg_goods.msgText = '序号000' + i;
-    app.data.msg_goods.id = 'id-' + i + 1;
-    app.data.msg_goods.headerImg = '../../images/tab/a1.png';
-    app.data.msg_goods.siteImg = '../../img/site.png';
-    app.data.list_goods.push(app.data.msg_goods);
+    var msg_goods = {};
+    msg_goods.price = this.data.price;
+    msg_goods.carid = this.data.name;
+    msg_goods.msgText = '序号000' + i;
+    msg_goods.id = 'id-' + i + 1;
+    msg_goods.headerImg = '../../images/tab/a1.png';
+    msg_goods.siteImg = '../../img/site.png';
+    app.data.list_goods.push(msg_goods);
     wx.navigateBack({
 
     })
