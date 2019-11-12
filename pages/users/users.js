@@ -28,7 +28,7 @@ Page({
   },
 
   click: function (e) {
-    app.data.user_id = e.target.id;
+    app.data.user_id = e.target.id.substring(3, e.target.id.length);
     console.log(app.data.user_id);
     wx.navigateTo({
       url: '/pages/user/user',

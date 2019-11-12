@@ -30,7 +30,7 @@ Page({
     msg_goods.price = this.data.price;
     msg_goods.carid = this.data.name;
     msg_goods.msgText = '序号000' + i;
-    msg_goods.id = i;
+    msg_goods.id = "id-"+i;
     msg_goods.headerImg = '../../images/tab/a1.png';
     msg_goods.siteImg = '../../img/site.png';
     app.data.list_goods.push(msg_goods);

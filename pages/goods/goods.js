@@ -29,7 +29,7 @@ Page({
 
   click:function(e){
     console.log(e.target.id);
-    app.data.good_id = e.target.id;
+    app.data.good_id = e.target.id.substring(3, e.target.id.length);
     wx.navigateTo({
       url: '/pages/good/good',
     })
