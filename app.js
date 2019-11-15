@@ -1,6 +1,7 @@
 //app.js
 App({
   data: {
+    state: -1,
     deviceInfo: {},
     list_goods:[],
     list_users:[],

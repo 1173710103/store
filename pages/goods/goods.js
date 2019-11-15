@@ -22,6 +22,7 @@ Page({
   touchStartState: 0, // 开始触摸时的状态 0 未显示菜单 1 显示菜单
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
   add:function(){
+    app.data.state = 0;
     wx.navigateTo({
       url: '/pages/addgoods/addgoods',
     })
@@ -146,12 +147,24 @@ Page({
     //this.translateXMsgItem(e.currentTarget.id, 0, 0);
   },
   onDeleteMsgTap: function (e) {
-    this.deleteMsgItem(e);
+    var start = parseInt(e.target.id.substring(3, e.target.id.length));
+    app.data.list_goods.splice(start,1);
+    console.log(start, app.data.list_goods.length);
+    for (var i = start ; i < app.data.list_goods.length; i++) {
+      app.data.list_goods[i].msgText = '序号000' + i;
+      app.data.list_goods[i].id = "id-" + i;
+      console.log(app.data.list_goods[i]);
+    }
+    this.setData({
+      msgList: app.data.list_goods
+    })
+    this.ontouchstart(e);
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);
   },
   onMarkMsgTap: function (e) {
+    app.data.state = 1;
     wx.navigateTo({
       url: '/pages/addgoods/addgoods',
     })
@@ -176,7 +189,7 @@ Page({
     setTimeout(function () {
       var index = s.getItemIndex(e.currentTarget.id);
       s.data.msgList.splice(index, 1);
-      s.setData({ msgList: s.data.msgList });
+      s.setData({ msgList: app.data.list_goods});
     }, 200);
     this.showState = 0;
     this.setData({ scrollY: true });

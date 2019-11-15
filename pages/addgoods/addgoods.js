@@ -9,7 +9,8 @@ Page({
    */
   data: {
     name:'',
-    price:''
+    price:'',
+    state: -1
   },
 
   input_name:function(in_name){
@@ -43,7 +44,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      state: app.data.state
+    })
+    console.log(this.data.state);
   },
 
   /**

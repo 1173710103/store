@@ -146,7 +146,18 @@ Page({
     //this.translateXMsgItem(e.currentTarget.id, 0, 0);
   },
   onDeleteMsgTap: function (e) {
-    this.deleteMsgItem(e);
+    var start = parseInt(e.target.id.substring(3, e.target.id.length));
+    app.data.list_users.splice(start, 1);
+    console.log(start, app.data.list_users.length);
+    for (var i = start; i < app.data.list_users.length; i++) {
+      app.data.list_users[i].msgText = '序号000' + i;
+      app.data.list_users[i].id = "id-" + i;
+      console.log(app.data.list_users[i]);
+    }
+    this.setData({
+      msgList: app.data.list_users
+    })
+    this.ontouchstart(e);
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);
