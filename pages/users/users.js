@@ -157,7 +157,9 @@ Page({
     this.setData({
       msgList: app.data.list_users
     })
-    this.ontouchstart(e);
+    if (start != app.data.list_users.length) {
+      this.ontouchstart(e);
+    }
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);

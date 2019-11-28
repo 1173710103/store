@@ -47,6 +47,7 @@ Page({
       this.touchStartState = 1;
       this.showState = 0;
       this.moveX = 0;
+      console.log(this.lastShowMsgId)
       this.translateXMsgItem(this.lastShowMsgId, 0, 200);
       this.lastShowMsgId = "";
       return;
@@ -155,10 +156,13 @@ Page({
       app.data.list_goods[i].id = "id-" + i;
       console.log(app.data.list_goods[i]);
     }
+    console.log(app.data.list_goods);
     this.setData({
       msgList: app.data.list_goods
     })
-    this.ontouchstart(e);
+    if (start != app.data.list_goods.length){
+      this.ontouchstart(e);
+    }
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);
