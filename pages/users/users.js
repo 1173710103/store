@@ -165,9 +165,11 @@ Page({
     console.log(e);
   },
   onMarkMsgTap: function (e) {
+    app.data.user_id = e.target.id.substring(3, e.target.id.length);
     wx.navigateTo({
-      url: '/pages/addusers/addusers',
+      url: '/pages/editusers/editusers',
     })
+    this.ontouchstart(e);
   },
   onMarkMsgLongtap: function (e) {
     console.log(e);

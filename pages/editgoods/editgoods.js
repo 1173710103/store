@@ -1,6 +1,6 @@
-// pages/addgoods/addgoods.js
+// pages/editgoods/editgoods.js
 
-var app = getApp()
+var app = getApp();
 
 Page({
 
@@ -8,35 +8,26 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id:'',
     name:'',
     price:'',
-    state: -1,
-    nowprice:'',
-    nowname:''
   },
 
-  input_name:function(in_name){
+  input_name: function (in_name) {
     this.setData({
       name: in_name.detail.value
     })
   },
 
-  input_price:function (in_price) {
+  input_price: function (in_price) {
     this.setData({
       price: in_price.detail.value
     })
   },
 
   confirm: function () {
-    var i = app.data.list_goods.length;
-    var msg_goods = {};
-    msg_goods.price = this.data.price;
-    msg_goods.carid = this.data.name;
-    msg_goods.msgText = '序号000' + i;
-    msg_goods.id = "id-"+i;
-    msg_goods.headerImg = '../../images/tab/a1.png';
-    msg_goods.siteImg = '../../img/site.png';
-    app.data.list_goods.push(msg_goods);
+    app.data.list_goods[app.data.good_id].price = this.data.price;
+    app.data.list_goods[app.data.good_id].carid = this.data.name;
     wx.navigateBack({
 
     })
@@ -45,11 +36,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (option) {
     this.setData({
-      state: app.data.state
+      name: app.data.list_goods[app.data.good_id].carid,
+      price: app.data.list_goods[app.data.good_id].price
     })
-    console.log(this.data.state);
   },
 
   /**
@@ -63,7 +54,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**

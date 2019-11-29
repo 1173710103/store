@@ -168,10 +168,12 @@ Page({
     console.log(e);
   },
   onMarkMsgTap: function (e) {
+    app.data.good_id = e.target.id.substring(3, e.target.id.length);
     app.data.state = 1;
     wx.navigateTo({
-      url: '/pages/addgoods/addgoods',
+      url: '/pages/editgoods/editgoods',
     })
+    this.ontouchstart(e);
   },
   onMarkMsgLongtap: function (e) {
     console.log(e);
