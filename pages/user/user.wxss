@@ -1,1 +1,6 @@
 /* pages/user/user.wxss */
+.content{
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}

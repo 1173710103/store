@@ -1,5 +1,5 @@
 <!--pages/good/good.wxml-->
-<view>
+<view class='content'>
   <text>名称:{{msg_goods.carid}}</text>
   <text>价格:{{msg_goods.price}}</text>
 </view>

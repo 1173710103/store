@@ -1,0 +1,10 @@
+<!--pages/list/list.wxml-->
+<view>
+  <button class = 'messagebtn' bindtap='goods_message'>信息管理</button>
+</view>
+<view>
+  <button class = 'housebtn' bindtap='house'>仓库管理</button>
+</view>
+<view>
+  <button class = 'salebtn' bindtap='sale'>销售管理</button>
+</view>

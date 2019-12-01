@@ -27,6 +27,11 @@ Page({
       url: '/pages/addgoods/addgoods',
     })
   },
+  back: function () {
+    wx.navigateTo({
+      url: '/pages/list/list',
+    })
+  },
 
   click:function(e){
     console.log(e.target.id);
