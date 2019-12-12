@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    dialogback: "<-",
     msgList: app.data.list_goods,
     height: 0,
     scrollY: true
@@ -28,8 +29,8 @@ Page({
     })
   },
   back: function () {
-    wx.navigateTo({
-      url: '/pages/list/list',
+    wx.redirectTo({
+      url: "/pages/list/list",
     })
   },
 

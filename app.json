@@ -3,6 +3,8 @@
     "pages/list/list",
     "pages/goods/goods",
     "pages/users/users",
+    "pages/house/house",
+    "pages/sale/sale",
     "pages/addgoods/addgoods",
     "pages/addusers/addusers",
     "pages/editgoods/editgoods",

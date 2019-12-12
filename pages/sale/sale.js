@@ -1,4 +1,4 @@
-// pages/list/list.js
+// pages/sale/sale.js
 Page({
 
   /**
@@ -6,24 +6,6 @@ Page({
    */
   data: {
 
-  },
-  goods_message: function () {
-    console.log("message")
-    wx.switchTab({
-      url: "/pages/goods/goods",
-    })
-  },
-  house: function () {
-    console.log("house")
-    wx.navigateTo({
-      url: "/pages/house/house",
-    })
-  },
-  sale: function () {
-    console.log("sale")
-    wx.navigateTo({
-      url: "/pages/sale/sale",
-    })
   },
 
   /**

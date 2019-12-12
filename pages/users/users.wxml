@@ -20,4 +20,7 @@
     <view>
       <button class = 'addbtn' bindtap='add'>+</button>
     </view>
+    <view>
+      <button class = 'backbtn' bindtap='back' decode='true'>{{dialogback}}</button>
+    </view>
   </scroll-view>

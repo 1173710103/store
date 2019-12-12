@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    dialogback: "<-",
     msgList: app.data.list_users,
     height: 0,
     scrollY: true
@@ -27,6 +28,11 @@ Page({
     })
   },
 
+  back: function () {
+    wx.redirectTo({
+      url: "/pages/list/list",
+    })
+  },
   click: function (e) {
     app.data.user_id = e.target.id.substring(3, e.target.id.length);
     console.log(app.data.user_id);
