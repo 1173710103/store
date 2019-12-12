@@ -1,0 +1,15 @@
+/* pages/editgoodsinhouse/editgoodsinhouse.wxss */
+.page-section{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+.buttons{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+.confirm{
+  width: 80%;
+  margin-top: 20rpx;
+}

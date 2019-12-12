@@ -6,7 +6,9 @@ App({
     list_goods:[],
     list_users:[],
     good_id:'',
-    user_id:''
+    user_id:'',
+    goodsinhouse_id: '',
+    list_house: []
   },
   onLaunch: function () {
     this.data.deviceInfo = wx.getSystemInfoSync();

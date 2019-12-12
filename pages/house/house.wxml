@@ -1,2 +1,26 @@
 <!--pages/house/house.wxml-->
-<text>pages/house/house.wxml</text>
+<!--index.wxml-->
+  <scroll-view style='height:{{height}}px;' scroll-y='{{scrollY}}' class='msg-list' bindscroll='onScroll'>
+    <view class="page__bd">
+        <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+    </view>
+    <view wx:for="{{msgList}}" wx:key="id" class='msg-item' animation='{{item.wrapAnimation}}'>
+      <view id='{{item.id}}' class='msg' animation='{{item.animation}}' bindtouchstart='ontouchstart' bindtouchmove='ontouchmove' bindtouchend='ontouchend' bindtap='click'>
+        <image id='{{item.id}}' class='header-img' src="{{item.headerImg}}"></image>
+        <text id='{{item.id}}' class='user-name'>{{item.carid}}</text>
+        <text  id='{{item.id}}'class='msg-text'>{{item.msgText}}</text>
+        <text  id='{{item.id}}'class='site-img'>{{item.number}}</text>
+      </view>
+      <view class='msg-menu'>
+        <view id='{{item.id}}' class='menu-delete' bindtap='onDeleteMsgTap' bindlongtap='onDeleteMsgLongtap'>
+          删除
+        </view>
+        <view id='{{item.id}}' class='menu-mark' bindtap='onMarkMsgTap' bindlongtap='onMarkMsgLongtap'>
+          修改
+        </view>
+      </view>
+    </view>
+    <view>
+      <button class = 'addbtn' bindtap='add'>+</button>
+    </view>
+  </scroll-view>

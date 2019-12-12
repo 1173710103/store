@@ -5,14 +5,18 @@
     "pages/users/users",
     "pages/house/house",
     "pages/sale/sale",
+    "pages/addgoodsintohouse/addgoodsintohouse",
     "pages/addgoods/addgoods",
     "pages/addusers/addusers",
+    "pages/editgoodsinhouse/editgoodsinhouse",
     "pages/editgoods/editgoods",
     "pages/editusers/editusers",
+    "pages/goodinhouse/goodinhouse",
     "pages/good/good",
     "pages/user/user",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "components/searchbar/searchbar"
   ],
   "window": {
     "backgroundTextStyle": "dark",

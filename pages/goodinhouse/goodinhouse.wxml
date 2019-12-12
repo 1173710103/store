@@ -1,0 +1,6 @@
+<!--pages/goodinhouse/goodinouse.wxml-->
+<view class='content'>
+  <text>名称:{{goodsinhouse.carid}}</text>
+  <text>价格:{{goodsinhouse.price}}</text>
+  <text>数量:{{goodsinhouse.number}}</text>
+</view>
