@@ -1,4 +1,4 @@
-// pages/goods/goods.js
+// pages/houselist/houselist.js
 var app = getApp()
 
 Page({
@@ -7,8 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dialogback: "<-",
-    msgList: app.data.list_goods,
+    msgList: app.data.houselist,
     height: 0,
     scrollY: true
   },
@@ -22,30 +21,24 @@ Page({
   showState: 0, //0 未显示菜单 1显示菜单
   touchStartState: 0, // 开始触摸时的状态 0 未显示菜单 1 显示菜单
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
-  add:function(){
-    app.data.state = 0;
+  add: function () {
     wx.navigateTo({
-      url: '/pages/addgoods/addgoods',
-    })
-  },
-  back: function () {
-    wx.redirectTo({
-      url: "/pages/list/list",
+      url: '/pages/addhouses/addhouses',
     })
   },
 
-  click:function(e){
+  click: function (e) {
     console.log(e.target.id);
-    app.data.good_id = e.target.id.substring(3, e.target.id.length);
+    app.data.houseid = e.target.id;
     wx.navigateTo({
-      url: '/pages/good/good',
+      url: app.data.houselist[e.target.id].url,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   ontouchstart: function (e) {
@@ -154,19 +147,18 @@ Page({
     //this.translateXMsgItem(e.currentTarget.id, 0, 0);
   },
   onDeleteMsgTap: function (e) {
-    var start = parseInt(e.target.id.substring(3, e.target.id.length));
-    app.data.list_goods.splice(start,1);
-    console.log(start, app.data.list_goods.length);
-    for (var i = start ; i < app.data.list_goods.length; i++) {
-      app.data.list_goods[i].msgText = '序号000' + i;
-      app.data.list_goods[i].id = "id-" + i;
-      console.log(app.data.list_goods[i]);
+    var start = parseInt(e.target.id);
+    app.data.houselist.splice(start, 1);
+    console.log(start, app.data.houselist.length);
+    for (var i = start; i < app.data.houselist.length; i++) {
+      app.data.houselist[i].id = i;
+      console.log(app.data.houselist[i]);
     }
-    console.log(app.data.list_goods);
+    console.log(app.data.houselist);
     this.setData({
-      msgList: app.data.list_goods
+      msgList: app.data.houselist
     })
-    if (start != app.data.list_goods.length){
+    if (start != app.data.houselist.length) {
       this.ontouchstart(e);
     }
   },
@@ -174,10 +166,9 @@ Page({
     console.log(e);
   },
   onMarkMsgTap: function (e) {
-    app.data.good_id = e.target.id.substring(3, e.target.id.length);
-    app.data.state = 1;
+    app.data.houseid = e.target.id;
     wx.navigateTo({
-      url: '/pages/editgoods/editgoods',
+      url: '/pages/edithouses/edithouses',
     })
     this.ontouchstart(e);
   },
@@ -185,9 +176,11 @@ Page({
     console.log(e);
   },
   getItemIndex: function (id) {
+    console.log(id);
     var msgList = this.data.msgList;
     for (var i = 0; i < msgList.length; i++) {
-      if (msgList[i].id === id) {
+      console.log(msgList[i].id);
+      if (msgList[i].id == id) {
         return i;
       }
     }
@@ -201,7 +194,7 @@ Page({
     setTimeout(function () {
       var index = s.getItemIndex(e.currentTarget.id);
       s.data.msgList.splice(index, 1);
-      s.setData({ msgList: app.data.list_goods});
+      s.setData({ msgList: app.data.houselist });
     }, 200);
     this.showState = 0;
     this.setData({ scrollY: true });
@@ -241,7 +234,7 @@ Page({
     this.pixelRatio = app.data.deviceInfo.pixelRatio;
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
-    this.setData({msgList: app.data.list_goods, height: height });
+    this.setData({ msgList: app.data.houselist, height: height });
     console.log(this.data.msgList);
   },
 

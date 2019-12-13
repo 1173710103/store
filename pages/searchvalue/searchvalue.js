@@ -1,4 +1,4 @@
-// pages/goods/goods.js
+// pages/searchvalue/searchvalue.js
 var app = getApp()
 
 Page({
@@ -7,10 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dialogback: "<-",
-    msgList: app.data.list_goods,
+    searchValue: '',
+    msgList: app.data.list_house,
+    msgneed:[],
     height: 0,
-    scrollY: true
+    scrollY: true,
+    inputShowed: false,
+    inputVal: "",
+    hidden:false
   },
   swipeCheckX: 35, //激活检测滑动的阈值
   swipeCheckState: 0, //0未激活 1激活
@@ -22,30 +26,35 @@ Page({
   showState: 0, //0 未显示菜单 1显示菜单
   touchStartState: 0, // 开始触摸时的状态 0 未显示菜单 1 显示菜单
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
-  add:function(){
-    app.data.state = 0;
+  click: function (e) {
+    console.log(e.target.id);
+    app.data.goodsinhouse_id = e.target.id.substring(3, e.target.id.length);
     wx.navigateTo({
-      url: '/pages/addgoods/addgoods',
-    })
-  },
-  back: function () {
-    wx.redirectTo({
-      url: "/pages/list/list",
+      url: '/pages/goodinhouse/goodinhouse',
     })
   },
 
-  click:function(e){
-    console.log(e.target.id);
-    app.data.good_id = e.target.id.substring(3, e.target.id.length);
-    wx.navigateTo({
-      url: '/pages/good/good',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    if (options && options.searchValue) {
+      this.setData({
+        searchValue: options.searchValue
+      });
+      for(var i = 0 ; i < app.data.list_house.length; i++){
+        if (app.data.list_house[i].carid == this.data.searchValue){
+          this.data.hidden = true;
+        }
+      }
+    }
+  },
+
+  // 搜索入口  
+  wxSearchTab: function () {
+    wx.navigateTo({
+      url: '../search/search'
+    })
   },
 
   ontouchstart: function (e) {
@@ -155,18 +164,18 @@ Page({
   },
   onDeleteMsgTap: function (e) {
     var start = parseInt(e.target.id.substring(3, e.target.id.length));
-    app.data.list_goods.splice(start,1);
-    console.log(start, app.data.list_goods.length);
-    for (var i = start ; i < app.data.list_goods.length; i++) {
-      app.data.list_goods[i].msgText = '序号000' + i;
-      app.data.list_goods[i].id = "id-" + i;
-      console.log(app.data.list_goods[i]);
+    app.data.list_house.splice(start, 1);
+    console.log(start, app.data.list_house.length);
+    for (var i = start; i < app.data.list_house.length; i++) {
+      app.data.list_house[i].msgText = '序号000' + i;
+      app.data.list_house[i].id = "id-" + i;
+      console.log(app.data.list_house[i]);
     }
-    console.log(app.data.list_goods);
+    console.log(app.data.list_house);
     this.setData({
-      msgList: app.data.list_goods
+      msgList: app.data.list_house
     })
-    if (start != app.data.list_goods.length){
+    if (start != app.data.list_house.length) {
       this.ontouchstart(e);
     }
   },
@@ -174,10 +183,9 @@ Page({
     console.log(e);
   },
   onMarkMsgTap: function (e) {
-    app.data.good_id = e.target.id.substring(3, e.target.id.length);
-    app.data.state = 1;
+    app.data.goodinhouse_id = e.target.id.substring(3, e.target.id.length);
     wx.navigateTo({
-      url: '/pages/editgoods/editgoods',
+      url: '/pages/editgoodsinhouse/editgoodsinhouse',
     })
     this.ontouchstart(e);
   },
@@ -201,7 +209,7 @@ Page({
     setTimeout(function () {
       var index = s.getItemIndex(e.currentTarget.id);
       s.data.msgList.splice(index, 1);
-      s.setData({ msgList: app.data.list_goods});
+      s.setData({ msgList: app.data.list_house });
     }, 200);
     this.showState = 0;
     this.setData({ scrollY: true });
@@ -213,7 +221,6 @@ Page({
   },
   animationMsgItem: function (id, animation) {
     var index = this.getItemIndex(id);
-    console.log(index);
     var param = {};
     var indexString = 'msgList[' + index + '].animation';
     param[indexString] = animation.export();
@@ -241,8 +248,7 @@ Page({
     this.pixelRatio = app.data.deviceInfo.pixelRatio;
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
-    this.setData({msgList: app.data.list_goods, height: height });
-    console.log(this.data.msgList);
+    this.setData({ msgList: app.data.list_house, height: height });
   },
 
   /**

@@ -1,36 +1,37 @@
-// pages/list/list.js
+// pages/edithouses/edithouses.js
+var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    id: '',
+    name: '',
+  },
 
-  },
-  goods_message: function () {
-    console.log("message")
-    wx.switchTab({
-      url: "/pages/goods/goods",
+  input_name: function (in_name) {
+    this.setData({
+      name: in_name.detail.value
     })
   },
-  house: function () {
-    console.log("house")
-    wx.navigateTo({
-      url: "/pages/houselist/houselist",
-    })
-  },
-  sale: function () {
-    console.log("sale")
-    wx.navigateTo({
-      url: "/pages/sale/sale",
+
+
+  confirm: function () {
+    app.data.houselist[app.data.houseid].name = this.data.name;
+    wx.navigateBack({
+
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (option) {
+    this.setData({
+      name: app.data.houselist[app.data.houseid].name,
+    })
   },
 
   /**

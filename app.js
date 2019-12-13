@@ -8,9 +8,15 @@ App({
     good_id:'',
     user_id:'',
     goodsinhouse_id: '',
-    list_house: []
+    list_house: {name:"大仓库",id:0,url:"/pages/house/house",list:[]},
+    list_house1: { name: "门店仓库", id:1 , url: "/pages/house1/house1", list: [] },
+    houseid : -1,
+    houselist: []
   },
   onLaunch: function () {
+    this.data.houselist.push(this.data.list_house);
+    this.data.houselist.push(this.data.list_house1);
+    console.log(this.data.houselist);
     this.data.deviceInfo = wx.getSystemInfoSync();
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []

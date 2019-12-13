@@ -1,5 +1,4 @@
-/* pages/house/house.wxss */
-@import "../../wxSearchView/wxSearchView.wxss";
+/* pages/houselist/houselist.wxss */
 ::-webkit-scrollbar {
   height: 0;
   color: transparent;
@@ -36,7 +35,7 @@
 
 .site-img {
   position: absolute;
-  width: 100rpx;
+  width: 70rpx;
   height: 70rpx;
   right: 30rpx;
   top: 40rpx;

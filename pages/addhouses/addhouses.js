@@ -1,28 +1,31 @@
-// pages/list/list.js
+// pages/addhouses/addhouses.js
+var app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    name: '',
+  },
 
-  },
-  goods_message: function () {
-    console.log("message")
-    wx.switchTab({
-      url: "/pages/goods/goods",
+  input_name: function (in_name) {
+    this.setData({
+      name: in_name.detail.value
     })
   },
-  house: function () {
-    console.log("house")
-    wx.navigateTo({
-      url: "/pages/houselist/houselist",
-    })
-  },
-  sale: function () {
-    console.log("sale")
-    wx.navigateTo({
-      url: "/pages/sale/sale",
+
+  confirm: function () {
+    var i = app.data.houselist.length;
+    var msg_house = {};
+    msg_house.name = this.data.name;
+    msg_house.id = i;
+    msg_house.url = "";
+    msg_house.list=[];
+    app.data.houselist.push(msg_house);
+    wx.navigateBack({
+
     })
   },
 
@@ -30,7 +33,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**

@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msgList: app.data.list_house,
+    searchValue: '',
+    msgList: app.data.list_house.list,
     height: 0,
     scrollY: true,
     inputShowed: false,
@@ -28,12 +29,6 @@ Page({
       url: '/pages/addgoodsintohouse/addgoodsintohouse',
     })
   },
-  back: function () {
-    wx.redirectTo({
-      url: "/pages/list/list",
-    })
-  },
-
   click: function (e) {
     console.log(e.target.id);
     app.data.goodsinhouse_id = e.target.id.substring(3, e.target.id.length);
@@ -41,23 +36,22 @@ Page({
       url: '/pages/goodinhouse/goodinhouse',
     })
   },
-
-  search: function (value) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve([{ text: '搜索结果', value: 1 }, { text: '搜索结果2', value: 2 }])
-      }, 200)
-    })
-  },
-  selectResult: function (e) {
-    console.log('select result', e.detail)
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      search: this.search.bind(this)
+    console.log(app.data.houseid);
+    if (options && options.searchValue) {
+      this.setData({
+        searchValue:options.searchValue
+      });
+    }
+  },
+
+  // 搜索入口  
+  wxSearchTab: function () {
+    wx.navigateTo({
+      url: '../search/search'
     })
   },
 
@@ -168,18 +162,18 @@ Page({
   },
   onDeleteMsgTap: function (e) {
     var start = parseInt(e.target.id.substring(3, e.target.id.length));
-    app.data.list_house.splice(start, 1);
-    console.log(start, app.data.list_house.length);
-    for (var i = start; i < app.data.list_house.length; i++) {
-      app.data.list_house[i].msgText = '序号000' + i;
-      app.data.list_house[i].id = "id-" + i;
-      console.log(app.data.list_house[i]);
+    app.data.list_house.list.splice(start, 1);
+    console.log(start, app.data.list_house.list.length);
+    for (var i = start; i < app.data.list_house.list.length; i++) {
+      app.data.list_house.list[i].msgText = '序号000' + i;
+      app.data.list_house.list[i].id = "id-" + i;
+      console.log(app.data.list_house.list[i]);
     }
-    console.log(app.data.list_house);
+    console.log(app.data.list_house.list);
     this.setData({
-      msgList: app.data.list_house
+      msgList: app.data.list_house.list
     })
-    if (start != app.data.list_house.length) {
+    if (start != app.data.list_house.list.length) {
       this.ontouchstart(e);
     }
   },
@@ -213,7 +207,7 @@ Page({
     setTimeout(function () {
       var index = s.getItemIndex(e.currentTarget.id);
       s.data.msgList.splice(index, 1);
-      s.setData({ msgList: app.data.list_house });
+      s.setData({ msgList: app.data.list_house.list });
     }, 200);
     this.showState = 0;
     this.setData({ scrollY: true });
@@ -252,7 +246,7 @@ Page({
     this.pixelRatio = app.data.deviceInfo.pixelRatio;
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
-    this.setData({ msgList: app.data.list_house, height: height });
+    this.setData({ msgList: app.data.list_house.list, height: height });
     console.log(this.data.msgList);
   },
 

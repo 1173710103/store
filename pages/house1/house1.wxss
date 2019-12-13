@@ -1,4 +1,4 @@
-/* pages/house/house.wxss */
+/* pages/house1/house1.wxss */
 @import "../../wxSearchView/wxSearchView.wxss";
 ::-webkit-scrollbar {
   height: 0;
@@ -156,6 +156,4 @@ box-shadow:3px 3px 3px #c8c8c8 ; */
 .addbtn{
   /* width: 80%; */
   /* margin-top: 30rpx; */
-  /* background-color: rgb(13, 226, 84); */
-  /* color: #FFF; */
 }

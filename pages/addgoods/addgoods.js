@@ -11,8 +11,6 @@ Page({
     name:'',
     price:'',
     state: -1,
-    nowprice:'',
-    nowname:''
   },
 
   input_name:function(in_name){

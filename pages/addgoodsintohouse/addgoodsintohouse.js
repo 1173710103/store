@@ -33,16 +33,17 @@ Page({
     })
   },
 
-  confirm: function () {
+  addintohouse:function(houseid){
+    console.log(app.data.houselist[houseid]);
     var flag = 0;
-    for (var i = 0; i < app.data.list_house.length; i++){
-      if (app.data.list_house[i].carid == this.data.name && app.data.list_house[i].price == this.data.price){
-        app.data.list_house[i].number = parseInt(app.data.list_house[i].number) + parseInt(this.data.number);
+    for (var i = 0; i < app.data.houselist[houseid].length; i++) {
+      if (app.data.houselist[houseid][i].carid == this.data.name && app.data.houselist[houseid][i].price == this.data.price) {
+        app.data.houselist[houseid][i].number = parseInt(app.data.houselist[houseid][i].number) + parseInt(this.data.number);
         flag = 1;
       }
     }
-    if(flag == 0){
-      var i = app.data.list_house.length;
+    if (flag == 0) {
+      var i = app.data.houselist[houseid].length - 2;
       var goodsinhouse = {};
       goodsinhouse.price = this.data.price;
       goodsinhouse.carid = this.data.name;
@@ -51,11 +52,16 @@ Page({
       goodsinhouse.id = "id-" + i;
       goodsinhouse.headerImg = '../../images/tab/a1.png';
       goodsinhouse.siteImg = '../../img/site.png';
-      app.data.list_house.push(goodsinhouse);
+      app.data.houselist[houseid].list.push(goodsinhouse);
     }
     wx.navigateBack({
 
     })
+  },
+
+  confirm: function () {
+    console.log(app.data.houseid)
+    this.addintohouse(parseInt(app.data.houseid))
   },
 
   /**

@@ -1,22 +1,29 @@
 {
   "pages": [
     "pages/list/list",
+    "pages/houselist/houselist",
     "pages/goods/goods",
     "pages/users/users",
     "pages/house/house",
+    "pages/house1/house1",
+    "pages/house2/house2",
     "pages/sale/sale",
     "pages/addgoodsintohouse/addgoodsintohouse",
     "pages/addgoods/addgoods",
+    "pages/addhouses/addhouses",
     "pages/addusers/addusers",
     "pages/editgoodsinhouse/editgoodsinhouse",
     "pages/editgoods/editgoods",
+    "pages/edithouses/edithouses",
     "pages/editusers/editusers",
     "pages/goodinhouse/goodinhouse",
     "pages/good/good",
     "pages/user/user",
-    "pages/index/index",
     "pages/logs/logs",
-    "components/searchbar/searchbar"
+    "pages/index/index",
+    "pages/search/search",
+    "pages/searchvalue/searchvalue"
+    
   ],
   "window": {
     "backgroundTextStyle": "dark",

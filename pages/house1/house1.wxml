@@ -1,5 +1,4 @@
-<!--pages/house/house.wxml-->
-<!--index.wxml-->
+<!--pages/house1/house1.wxml-->
 <view class="weui-search-bar">
   <view class="weui-search-bar__form">
     <view class="weui-search-bar__box">
@@ -9,7 +8,7 @@
   </view>
 </view>
   <scroll-view style='height:{{height}}px;' scroll-y='{{scrollY}}' class='msg-list' bindscroll='onScroll'>
-    <view wx:for="{{msgList}}" wx:key="id"  animation='{{item.wrapAnimation}}'>
+    <view wx:for="{{msgList}}" wx:key="id" animation='{{item.wrapAnimation}}'>
     <view wx:if = "{{item.id}}" class='msg-item'>
         <view id='{{item.id}}' class='msg' animation='{{item.animation}}' bindtouchstart='ontouchstart' bindtouchmove='ontouchmove' bindtouchend='ontouchend' bindtap='click'>
           <image id='{{item.id}}' class='header-img' src="{{item.headerImg}}"></image>
@@ -25,7 +24,7 @@
             修改
           </view>
         </view>
-        </view>
+      </view>
     </view>
     <view>
       <button class = 'addbtn' bindtap='add'>+</button>

@@ -1,0 +1,10 @@
+<!--pages/addhouses/addhouses.wxml-->
+<view class="page-body">
+  <view class="page-section">
+    <label class="weui-cells__title">名称:</label>
+    <input class="input_name" bindinput ='input_name'  auto-focus placeholder="仓库名称"/>
+  </view>
+</view>
+<view class = 'buttons'>
+  <button class = 'confirm' bindtap='confirm'>确认</button>
+</view>
