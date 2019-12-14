@@ -45,7 +45,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.msgList)
+    
   },
 
   ontouchstart: function (e) {
@@ -154,10 +154,6 @@ Page({
     //this.translateXMsgItem(e.currentTarget.id, 0, 0);
   },
   onDeleteMsgTap: function (e) {
-
-    //wx.cloud.init();
-    
-
     var start = parseInt(e.target.id.substring(3, e.target.id.length));
     app.data.list_goods.splice(start,1);
     console.log(start, app.data.list_goods.length);
@@ -173,38 +169,6 @@ Page({
     if (start != app.data.list_goods.length){
       this.ontouchstart(e);
     }
-
-    // wx.cloud.init();
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: 'deleteDatabase',
-      // 传给云函数的参数
-      success: function () {
-        console.log("删除成功")
-
-        const db = wx.cloud.database()
-        for (var i = app.data.list_goods.length - 1; i >=0 ; i--) {
-          db.collection('goods').add({
-            data: {
-              id: app.data.list_goods[i].id,
-              price: app.data.list_goods[i].price,
-              carid: app.data.list_goods[i].carid,
-              msgText: app.data.list_goods[i].msgText,
-              headerImg: app.data.list_goods[i].headerImg,
-              siteImg: app.data.list_goods[i].siteImg,
-              flag: true
-            },
-            success: res => {
-              console.log("插入成功");
-            }
-          })
-        }
-      },
-      fail: console.error
-    })
-
-    
-    
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);

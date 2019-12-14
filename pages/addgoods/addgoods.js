@@ -11,8 +11,6 @@ Page({
     name:'',
     price:'',
     state: -1,
-    nowprice:'',
-    nowname:''
   },
 
   input_name:function(in_name){
@@ -37,65 +35,9 @@ Page({
     msg_goods.headerImg = '../../images/tab/a1.png';
     msg_goods.siteImg = '../../img/site.png';
     app.data.list_goods.push(msg_goods);
-
-    //wx.cloud.init();
-    const db = wx.cloud.database()
-    db.collection('goods').add({
-      data: {
-        id: msg_goods.id,
-        price: msg_goods.price,
-        carid: msg_goods.carid,
-        msgText: msg_goods.msgText,
-        headerImg: msg_goods.headerImg,
-        siteImg: msg_goods.siteImg,
-        flag: true
-      },
-      success: res => {
-        console.log("插入成功");
-      }
-    })
-
     wx.navigateBack({
 
     })
-  },
-
-  addDatabase:function(array){
-    //wx.cloud.init();
-    const db = wx.cloud.database()
-    for(let i=0;i<array.length;i++){
-      db.collection('goods').add({
-        data: {
-          id: array[i].id,
-          price: array[i].price,
-          name: array[i].carid,
-        },
-        success: res => {
-          console.log("插入成功");
-        }
-      })
-    }
-  },
-
-  deleteDatabase:function(){
-
-    // 云函数入口文件
-    const cloud = require('../../cloudfunctions/node_modules/wx-server-sdk')
-    cloud.init()
-    const db = cloud.database()//链接数据库
-    const _ = db.command
-
-    // 云函数入口函数
-    exports.main = async (event, context) => {
-      try {
-        return await db.collection('goods').where({
-          id:"+"
-        }).remove()
-      } catch (e) {
-        console.error(e)
-      }
-
-    }
   },
 
   /**
@@ -105,7 +47,7 @@ Page({
     this.setData({
       state: app.data.state
     })
-    //console.log(this.data.state);
+    console.log(this.data.state);
   },
 
   /**
