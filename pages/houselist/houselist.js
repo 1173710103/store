@@ -31,7 +31,7 @@ Page({
     console.log(e.target.id);
     app.data.houseid = e.target.id;
     wx.navigateTo({
-      url: app.data.houselist[e.target.id].url,
+      url: "/pages/house/house",
     })
   },
   /**

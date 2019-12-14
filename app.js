@@ -8,9 +8,9 @@ App({
     good_id:'',
     user_id:'',
     goodsinhouse_id: '',
-    list_house: {name:"大仓库",id:0,url:"/pages/house/house",list:[]},
-    list_house1: { name: "门店仓库", id:1 , url: "/pages/house1/house1", list: [] },
-    houseid : -1,
+    list_house: {name:"大仓库",id:0,list:[]},
+    list_house1: { name: "门店仓库", id:1,list: [] },
+    houseid : 0,
     houselist: []
   },
   onLaunch: function () {

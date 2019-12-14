@@ -34,16 +34,15 @@ Page({
   },
 
   addintohouse:function(houseid){
-    console.log(app.data.houselist[houseid]);
     var flag = 0;
-    for (var i = 0; i < app.data.houselist[houseid].length; i++) {
-      if (app.data.houselist[houseid][i].carid == this.data.name && app.data.houselist[houseid][i].price == this.data.price) {
-        app.data.houselist[houseid][i].number = parseInt(app.data.houselist[houseid][i].number) + parseInt(this.data.number);
+    for (var i = 0; i < app.data.houselist[houseid].list.length; i++) {
+      if (app.data.houselist[houseid].list[i].carid == this.data.name && app.data.houselist[houseid].list[i].price == this.data.price) {
+        app.data.houselist[houseid].list[i].number = parseInt(app.data.houselist[houseid].list[i].number) + parseInt(this.data.number);
         flag = 1;
       }
     }
     if (flag == 0) {
-      var i = app.data.houselist[houseid].length - 2;
+      var i = app.data.houselist[houseid].list.length;
       var goodsinhouse = {};
       goodsinhouse.price = this.data.price;
       goodsinhouse.carid = this.data.name;
@@ -61,7 +60,7 @@ Page({
 
   confirm: function () {
     console.log(app.data.houseid)
-    this.addintohouse(parseInt(app.data.houseid))
+    this.addintohouse(app.data.houseid)
   },
 
   /**

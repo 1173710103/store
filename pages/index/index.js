@@ -48,7 +48,6 @@ Page({
         }
       })
     }
-    console.log(userInfo);
   },
   getUserInfo: function(e) {
     console.log(e)

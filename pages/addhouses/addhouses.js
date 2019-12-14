@@ -21,7 +21,6 @@ Page({
     var msg_house = {};
     msg_house.name = this.data.name;
     msg_house.id = i;
-    msg_house.url = "";
     msg_house.list=[];
     app.data.houselist.push(msg_house);
     wx.navigateBack({

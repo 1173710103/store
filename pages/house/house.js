@@ -8,7 +8,7 @@ Page({
    */
   data: {
     searchValue: '',
-    msgList: app.data.list_house.list,
+    msgList: app.data.houselist[app.data.houseid].list,
     height: 0,
     scrollY: true,
     inputShowed: false,
@@ -162,18 +162,18 @@ Page({
   },
   onDeleteMsgTap: function (e) {
     var start = parseInt(e.target.id.substring(3, e.target.id.length));
-    app.data.list_house.list.splice(start, 1);
-    console.log(start, app.data.list_house.list.length);
-    for (var i = start; i < app.data.list_house.list.length; i++) {
-      app.data.list_house.list[i].msgText = '序号000' + i;
-      app.data.list_house.list[i].id = "id-" + i;
-      console.log(app.data.list_house.list[i]);
+    app.data.houselist[app.data.houseid].list.splice(start, 1);
+    console.log(start, app.data.houselist[app.data.houseid].list.length);
+    for (var i = start; i < app.data.houselist[app.data.houseid].list.length; i++) {
+      app.data.houselist[app.data.houseid].list[i].msgText = '序号000' + i;
+      app.data.houselist[app.data.houseid].list[i].id = "id-" + i;
+      console.log(app.data.houselist[app.data.houseid].list[i]);
     }
-    console.log(app.data.list_house.list);
+    console.log(app.data.houselist[app.data.houseid].list);
     this.setData({
-      msgList: app.data.list_house.list
+      msgList: app.data.houselist[app.data.houseid].list
     })
-    if (start != app.data.list_house.list.length) {
+    if (start != app.data.houselist[app.data.houseid].list.length) {
       this.ontouchstart(e);
     }
   },
@@ -207,7 +207,7 @@ Page({
     setTimeout(function () {
       var index = s.getItemIndex(e.currentTarget.id);
       s.data.msgList.splice(index, 1);
-      s.setData({ msgList: app.data.list_house.list });
+      s.setData({ msgList: app.data.houselist[app.data.houseid].list });
     }, 200);
     this.showState = 0;
     this.setData({ scrollY: true });
@@ -246,7 +246,7 @@ Page({
     this.pixelRatio = app.data.deviceInfo.pixelRatio;
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
-    this.setData({ msgList: app.data.list_house.list, height: height });
+    this.setData({ msgList: app.data.houselist[app.data.houseid].list, height: height });
     console.log(this.data.msgList);
   },
 
