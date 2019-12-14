@@ -12,7 +12,6 @@
     <view wx:for="{{msgList}}" wx:key="id"  animation='{{item.wrapAnimation}}'>
     <view wx:if = "{{item.id}}" class='msg-item'>
         <view id='{{item.id}}' class='msg' animation='{{item.animation}}' bindtouchstart='ontouchstart' bindtouchmove='ontouchmove' bindtouchend='ontouchend' bindtap='click'>
-          <image id='{{item.id}}' class='header-img' src="{{item.headerImg}}"></image>
           <text id='{{item.id}}' class='user-name'>{{item.carid}}</text>
           <text  id='{{item.id}}'class='msg-text'>{{item.msgText}}</text>
           <text  id='{{item.id}}'class='site-img'>{{item.number}}</text>

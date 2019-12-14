@@ -10,13 +10,16 @@ App({
     goodsinhouse_id: '',
     list_house: {name:"大仓库",id:0,list:[]},
     list_house1: { name: "门店仓库", id:1,list: [] },
+    list_worker_0:[],
     houseid : 0,
-    houselist: []
+    workerid:0,
+    houselist: [],
+    salelist:[]
   },
   onLaunch: function () {
     this.data.houselist.push(this.data.list_house);
     this.data.houselist.push(this.data.list_house1);
-    console.log(this.data.houselist);
+    this.data.salelist.push(this.data.list_worker_0);
     this.data.deviceInfo = wx.getSystemInfoSync();
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
