@@ -14,9 +14,22 @@ App({
     houselist: []
   },
   onLaunch: function () {
+    
+    wx.cloud.init()
+    const db = wx.cloud.database()
+    db.collection('goods').get({
+      success: res => {
+        //console.log("!!!")
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值 
+        console.log(res.data)     
+        this.data.list_goods = res.data
+        console.log(this.data.list_goods)
+      }
+    }),
+  
     this.data.houselist.push(this.data.list_house);
     this.data.houselist.push(this.data.list_house1);
-    console.log(this.data.houselist);
+    //console.log(this.data.list_goods);
     this.data.deviceInfo = wx.getSystemInfoSync();
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
