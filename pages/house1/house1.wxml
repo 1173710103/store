@@ -1,0 +1,32 @@
+<!--pages/house1/house1.wxml-->
+<view class="weui-search-bar">
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input"  disabled='true' placeholder="搜索" bindtap="wxSearchTab"/>
+    </view>
+  </view>
+</view>
+  <scroll-view style='height:{{height}}px;' scroll-y='{{scrollY}}' class='msg-list' bindscroll='onScroll'>
+    <view wx:for="{{msgList}}" wx:key="id" animation='{{item.wrapAnimation}}'>
+    <view wx:if = "{{item.id}}" class='msg-item'>
+        <view id='{{item.id}}' class='msg' animation='{{item.animation}}' bindtouchstart='ontouchstart' bindtouchmove='ontouchmove' bindtouchend='ontouchend' bindtap='click'>
+          <image id='{{item.id}}' class='header-img' src="{{item.headerImg}}"></image>
+          <text id='{{item.id}}' class='user-name'>{{item.carid}}</text>
+          <text  id='{{item.id}}'class='msg-text'>{{item.msgText}}</text>
+          <text  id='{{item.id}}'class='site-img'>{{item.number}}</text>
+        </view>
+        <view class='msg-menu'>
+          <view id='{{item.id}}' class='menu-delete' bindtap='onDeleteMsgTap' bindlongtap='onDeleteMsgLongtap'>
+            删除
+          </view>
+          <view id='{{item.id}}' class='menu-mark' bindtap='onMarkMsgTap' bindlongtap='onMarkMsgLongtap'>
+            修改
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <button class = 'addbtn' bindtap='add'>+</button>
+    </view>
+  </scroll-view>
