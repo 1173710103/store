@@ -166,6 +166,34 @@ Page({
     if (start != app.data.list_users.length) {
       this.ontouchstart(e);
     }
+
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteUsers',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+
+        const db = wx.cloud.database()
+        for (var i = app.data.list_users.length - 1; i >= 0; i--) {
+          db.collection('users').add({
+            data: {
+              age: app.data.list_users[i].age,
+              carid: app.data.list_users[i].carid,
+              msgText: app.data.list_users[i].msgText,
+              id: app.data.list_users[i].id,
+              headerImg: app.data.list_users[i].headerImg,
+              siteImg: app.data.list_users[i].siteImg,
+              flag: true
+            },
+            success: res => {
+              console.log("插入成功");
+            }
+          })
+        }
+      },
+      fail: console.error
+    }) 
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);

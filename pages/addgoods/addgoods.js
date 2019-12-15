@@ -38,6 +38,23 @@ Page({
     wx.navigateBack({
 
     })
+
+    //wx.cloud.init(); 
+    const db = wx.cloud.database()
+    db.collection('goods').add({
+      data: {
+        id: msg_goods.id,
+        price: msg_goods.price,
+        carid: msg_goods.carid,
+        msgText: msg_goods.msgText,
+        headerImg: msg_goods.headerImg,
+        siteImg: msg_goods.siteImg,
+        flag: true
+      },
+      success: res => {
+        console.log("插入成功");
+      }
+    }) 
   },
 
   /**

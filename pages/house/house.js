@@ -176,6 +176,31 @@ Page({
     if (start != app.data.houselist[app.data.houseid].list.length) {
       this.ontouchstart(e);
     }
+
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteHouse',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+
+        const db = wx.cloud.database()
+        for (var i = app.data.houselist.length - 1; i >= 0; i--) {
+          db.collection('house_list').add({
+            data: {
+              id: app.data.houselist[i].id,
+              name: app.data.houselist[i].name,
+              list: app.data.houselist[i].list,
+              flag: true
+            },
+            success: res => {
+              console.log("插入成功");
+            }
+          })
+        }
+      },
+      fail: console.error
+    }) 
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);

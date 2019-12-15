@@ -31,6 +31,34 @@ Page({
     wx.navigateBack({
 
     })
+
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteGoods',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+
+        const db = wx.cloud.database()
+        for (var i = app.data.list_goods.length - 1; i >= 0; i--) {
+          db.collection('goods').add({
+            data: {
+              id: app.data.list_goods[i].id,
+              price: app.data.list_goods[i].price,
+              carid: app.data.list_goods[i].carid,
+              msgText: app.data.list_goods[i].msgText,
+              headerImg: app.data.list_goods[i].headerImg,
+              siteImg: app.data.list_goods[i].siteImg,
+              flag: true
+            },
+            success: res => {
+              console.log("插入成功");
+            }
+          })
+        }
+      },
+      fail: console.error
+    }) 
   },
 
   /**

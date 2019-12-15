@@ -36,6 +36,22 @@ Page({
     wx.navigateBack({
 
     })
+
+    const db = wx.cloud.database()
+    db.collection('users').add({
+      data: {
+        age: msg_users.age,
+        carid: msg_users.carid,
+        msgText: msg_users.msgText,
+        id: msg_users.id,
+        headerImg: msg_users.headerImg,
+        siteImg: msg_users.siteImg,
+        flag: true
+      },
+      success: res => {
+        console.log("插入成功");
+      }
+    }) 
   },
 
   /**

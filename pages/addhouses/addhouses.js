@@ -26,6 +26,19 @@ Page({
     wx.navigateBack({
 
     })
+
+    const db = wx.cloud.database()
+    db.collection('house_list').add({
+      data: {
+        name: msg_house.name,
+        id: msg_house.id,
+        list: msg_house.list,
+        flag: true
+      },
+      success: res => {
+        console.log("插入成功");
+      }
+    }) 
   },
 
   /**
