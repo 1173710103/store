@@ -1,0 +1,5 @@
+<!--pages/thesale/thesale.wxml-->
+<view class='content'>
+  <text>名称:{{sale.name}}</text>
+  <text>数量:{{sale.number}}</text>
+</view>

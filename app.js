@@ -5,14 +5,20 @@ App({
     deviceInfo: {},
     list_goods:[],
     list_users:[],
+    goodname:'',
+    username:'',
+    house_id:0,//命名原则正好和good和user相反
     good_id:'',
     user_id:'',
     goodsinhouse_id: '',
     list_house: {name:"大仓库",id:0,list:[]},
-    list_house1: { name: "门店仓库", id:1,list: [] },
+    list_house1: { name: "门店仓库", id:1,list:[] },
     list_worker_0:[],
+    list_worker_1: [],
+    list_worker_2: [],
     houseid : 0,
     workerid:0,
+    saleid:-1,
     houselist: [],
     salelist:[]
   },
@@ -20,6 +26,8 @@ App({
     this.data.houselist.push(this.data.list_house);
     this.data.houselist.push(this.data.list_house1);
     this.data.salelist.push(this.data.list_worker_0);
+    this.data.salelist.push(this.data.list_worker_1);
+    this.data.salelist.push(this.data.list_worker_2);
     this.data.deviceInfo = wx.getSystemInfoSync();
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []

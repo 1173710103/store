@@ -2,7 +2,7 @@
 <view class="page-body">
   <view class="page-section">
     <label class="weui-cells__title">名称:</label>
-    <input class="input_name" bindinput ='input_name'  auto-focus placeholder="订单名称"/>
+    <input class="input_name" bindfocus ='input_name' value = '{{name}}' placeholder="货品名称"/>
   </view>
   <view class="page-section">
     <label class="weui-cells__title">数量(单位):</label>

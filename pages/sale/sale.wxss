@@ -35,7 +35,7 @@
 
 .site-img {
   position: absolute;
-  width: 70rpx;
+  width: 120rpx;
   height: 70rpx;
   right: 30rpx;
   top: 40rpx;

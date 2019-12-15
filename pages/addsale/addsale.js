@@ -9,41 +9,50 @@ Page({
   data: {
     name: '',
     number: '',
+    sale: {}
   },
 
-  input_name: function (in_name) {
-    this.setData({
-      name: in_name.detail.value
+  input_name: function () {
+    wx.hideKeyboard()
+    wx.redirectTo({
+      url: "/pages/houseslistforselecting/houseslistforselecting",
     })
   },
 
   input_price: function (in_number) {
     this.setData({
-      price: in_number.detail.value
+      number: in_number.detail.value
     })
   },
 
   save: function () {
-    var i = app.data.salelist[app.data.workerid].length;
-    var sale = {};
-    sale.number = this.data.number;
-    sale.name = this.data.name;
-    sale.id = i;
-    sale.state = false;//false保存，true提交
-    app.data.salelist[app.data.workerid].push(sale);
+    this.creatsale(false);
     wx.navigateBack({
 
     })
   },
+  confirm: function () {
+    this.creatsale(true);
+    app.data.salelist[app.data.workerid + 1].push(this.data.sale)
+    wx.navigateBack({
 
+    })
+  },
+  creatsale: function (state) {
+    var i = app.data.salelist[app.data.workerid].length;
+    this.data.sale.number = this.data.number;
+    this.data.sale.name = this.data.name;
+    this.data.sale.id = i;
+    this.data.sale.state = state;//false保存，true提交
+    app.data.salelist[app.data.workerid].push(this.data.sale);
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      state: app.data.state
+      name: app.data.goodname
     })
-    console.log(this.data.state);
   },
 
   /**

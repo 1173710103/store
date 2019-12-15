@@ -9,7 +9,8 @@ Page({
   data: {
     msgList: app.data.salelist[app.data.workerid],
     height: 0,
-    scrollY: true
+    scrollY: true,
+    workerid: app.data.workerid
   },
   swipeCheckX: 35, //激活检测滑动的阈值
   swipeCheckState: 0, //0未激活 1激活
@@ -23,6 +24,7 @@ Page({
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
   add: function () {
     app.data.state = 0;
+    app.data.goodname = '';
     wx.navigateTo({
       url: '/pages/addsale/addsale',
     })
@@ -30,9 +32,9 @@ Page({
 
   click: function (e) {
     console.log(e.target.id);
-    app.data.good_id = e.target.id.substring(3, e.target.id.length);
+    app.data.saleid = e.target.id;
     wx.navigateTo({
-      url: '/pages/good/good',
+      url: '/pages/thesale/thesale',
     })
   },
   /**
@@ -148,15 +150,11 @@ Page({
     //this.translateXMsgItem(e.currentTarget.id, 0, 0);
   },
   onDeleteMsgTap: function (e) {
-    var start = parseInt(e.target.id.substring(3, e.target.id.length));
+    var start = parseInt(e.target.id);
     app.data.salelist[app.data.workerid].splice(start, 1);
-    console.log(start, app.data.salelist[app.data.workerid].length);
     for (var i = start; i < app.data.salelist[app.data.workerid].length; i++) {
-      app.data.salelist[app.data.workerid][i].msgText = '序号000' + i;
-      app.data.salelist[app.data.workerid][i].id = "id-" + i;
-      console.log(app.data.salelist[app.data.workerid][i]);
+      app.data.salelist[app.data.workerid][i].id =i;
     }
-    console.log(app.data.salelist[app.data.workerid]);
     this.setData({
       msgList: app.data.salelist[app.data.workerid]
     })
@@ -168,7 +166,7 @@ Page({
     console.log(e);
   },
   onMarkMsgTap: function (e) {
-    app.data.good_id = e.target.id.substring(3, e.target.id.length);
+    app.data.saleid = e.target.id;
     app.data.state = 1;
     wx.navigateTo({
       url: '/pages/editsale/editsale',
@@ -181,7 +179,7 @@ Page({
   getItemIndex: function (id) {
     var msgList = this.data.msgList;
     for (var i = 0; i < msgList.length; i++) {
-      if (msgList[i].id === id) {
+      if (msgList[i].id == id) {
         return i;
       }
     }
