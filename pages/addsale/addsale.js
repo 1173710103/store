@@ -48,16 +48,16 @@ Page({
       // 传给云函数的参数 
       success: function () {
         console.log("删除成功")
-        const db = wx.cloud.database()
-        db.collection('sale_list').add({
+        wx.cloud.callFunction({
+          name: 'addGoods',
           data: {
             list: app.data.salelist,
             flag: true
           },
-          success: res => {
-            console.log("插入成功");
+          complete: res => {
+            console.log("添加成功")
           }
-        }) 
+        })
       },
       fail: console.error
     }) 
@@ -98,13 +98,14 @@ Page({
       success: function () {
         console.log("删除成功")
         const db = wx.cloud.database()
-        db.collection('sale_list').add({
+        wx.cloud.callFunction({
+          name: 'addGoods',
           data: {
             list: app.data.salelist,
             flag: true
           },
-          success: res => {
-            console.log("插入成功");
+          complete: res => {
+            console.log("添加成功")
           }
         })
       },

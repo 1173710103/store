@@ -172,15 +172,19 @@ Page({
         const db = wx.cloud.database()
         console.log(app.data.houselist)
         for (var i = app.data.houselist.length - 1; i >= 0; i--) {
-          db.collection('house_list').add({
+          wx.cloud.callFunction({
+            name: 'addUsers',
             data: {
-              id: app.data.houselist[i].id,
-              name: app.data.houselist[i].name,
-              list: app.data.houselist[i].list,
+              age: msg_users.age,
+              carid: msg_users.carid,
+              msgText: msg_users.msgText,
+              id: msg_users.id,
+              headerImg: msg_goods.headerImg,
+              siteImg: msg_goods.siteImg,
               flag: true
             },
-            success: res => {
-              console.log("插入成功");
+            complete: res => {
+              console.log("添加成功")
             }
           })
         }

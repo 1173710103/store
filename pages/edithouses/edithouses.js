@@ -31,17 +31,17 @@ Page({
       success: function () {
         console.log("删除成功")
 
-        const db = wx.cloud.database()
         for (var i = app.data.houselist.length - 1; i >= 0; i--) {
-          db.collection('house_list').add({
+          wx.cloud.callFunction({
+            name: 'addHouse',
             data: {
-              id: app.data.houselist[i].id,
-              name: app.data.houselist[i].name,
-              list: app.data.houselist[i].list,
+              name: msg_house.name,
+              id: msg_house.id,
+              list: msg_house.list,
               flag: true
             },
-            success: res => {
-              console.log("插入成功");
+            complete: res => {
+              console.log("添加成功")
             }
           })
         }

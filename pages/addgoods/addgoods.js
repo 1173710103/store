@@ -39,9 +39,8 @@ Page({
 
     })
 
-    //wx.cloud.init(); 
-    const db = wx.cloud.database()
-    db.collection('goods').add({
+    wx.cloud.callFunction({
+      name: 'addGoods',
       data: {
         id: msg_goods.id,
         price: msg_goods.price,
@@ -51,10 +50,27 @@ Page({
         siteImg: msg_goods.siteImg,
         flag: true
       },
-      success: res => {
-        console.log("插入成功");
+      complete: res => {
+        console.log("添加成功")
       }
-    }) 
+    })
+
+    //wx.cloud.init(); 
+    // const db = wx.cloud.database()
+    // db.collection('goods').add({
+    //   data: {
+    //     id: msg_goods.id,
+    //     price: msg_goods.price,
+    //     carid: msg_goods.carid,
+    //     msgText: msg_goods.msgText,
+    //     headerImg: msg_goods.headerImg,
+    //     siteImg: msg_goods.siteImg,
+    //     flag: true
+    //   },
+    //   success: res => {
+    //     console.log("插入成功");
+    //   }
+    // }) 
   },
 
   /**

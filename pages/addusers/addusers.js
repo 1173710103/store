@@ -37,21 +37,21 @@ Page({
 
     })
 
-    const db = wx.cloud.database()
-    db.collection('users').add({
+    wx.cloud.callFunction({
+      name: 'addUsers',
       data: {
         age: msg_users.age,
         carid: msg_users.carid,
         msgText: msg_users.msgText,
         id: msg_users.id,
-        headerImg: msg_users.headerImg,
-        siteImg: msg_users.siteImg,
+        headerImg: msg_goods.headerImg,
+        siteImg: msg_goods.siteImg,
         flag: true
       },
-      success: res => {
-        console.log("插入成功");
+      complete: res => {
+        console.log("添加成功")
       }
-    }) 
+    })
   },
 
   /**

@@ -58,6 +58,7 @@ Page({
 ) {
       app.data.wokerid = 1
     }
+    console.log(app.data.wokerid)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

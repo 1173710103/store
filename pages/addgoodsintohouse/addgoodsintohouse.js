@@ -71,15 +71,16 @@ Page({
 
         const db = wx.cloud.database()
         for (var i = app.data.houselist.length - 1; i >= 0; i--) {
-          db.collection('house_list').add({
+          wx.cloud.callFunction({
+            name: 'addGoodintoHouse',
             data: {
               id: app.data.houselist[i].id,
               name: app.data.houselist[i].name,
               list: app.data.houselist[i].list,
               flag: true
             },
-            success: res => {
-              console.log("插入成功");
+            complete: res => {
+              console.log("添加成功")
             }
           })
         }

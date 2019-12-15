@@ -176,18 +176,19 @@ Page({
 
         const db = wx.cloud.database()
         for (var i = app.data.list_users.length - 1; i >= 0; i--) {
-          db.collection('users').add({
+          wx.cloud.callFunction({
+            name: 'addUsers',
             data: {
-              age: app.data.list_users[i].age,
-              carid: app.data.list_users[i].carid,
-              msgText: app.data.list_users[i].msgText,
-              id: app.data.list_users[i].id,
-              headerImg: app.data.list_users[i].headerImg,
-              siteImg: app.data.list_users[i].siteImg,
+              age: msg_users.age,
+              carid: msg_users.carid,
+              msgText: msg_users.msgText,
+              id: msg_users.id,
+              headerImg: msg_goods.headerImg,
+              siteImg: msg_goods.siteImg,
               flag: true
             },
-            success: res => {
-              console.log("插入成功");
+            complete: res => {
+              console.log("添加成功")
             }
           })
         }

@@ -175,14 +175,14 @@ Page({
       // 传给云函数的参数 
       success: function () {
         console.log("删除成功")
-        const db = wx.cloud.database()
-        db.collection('sale_list').add({
+        wx.cloud.callFunction({
+          name: 'addSale',
           data: {
             list: app.data.salelist,
             flag: true
           },
-          success: res => {
-            console.log("插入成功");
+          complete: res => {
+            console.log("添加成功")
           }
         })
       },
@@ -225,14 +225,14 @@ Page({
       // 传给云函数的参数 
       success: function () {
         console.log("删除成功")
-        const db = wx.cloud.database()
-        db.collection('sale_list').add({
+        wx.cloud.callFunction({
+          name: 'addSale',
           data: {
             list: app.data.salelist,
             flag: true
           },
-          success: res => {
-            console.log("插入成功");
+          complete: res => {
+            console.log("添加成功")
           }
         })
       },
@@ -249,14 +249,14 @@ Page({
       // 传给云函数的参数 
       success: function () {
         console.log("删除成功")
-        const db = wx.cloud.database()
-        db.collection('sale_list').add({
+        wx.cloud.callFunction({
+          name: 'addSale',
           data: {
             list: app.data.salelist,
             flag: true
           },
-          success: res => {
-            console.log("插入成功");
+          complete: res => {
+            console.log("添加成功")
           }
         })
       },
@@ -312,17 +312,15 @@ Page({
       success: function () {
         console.log("删除成功")
 
-        const db = wx.cloud.database()
         for (var i = app.data.houselist.length - 1; i >= 0; i--) {
-          db.collection('house_list').add({
+          wx.cloud.callFunction({
+            name: 'addGoodintoHouse',
             data: {
-              id: app.data.houselist[i].id,
-              name: app.data.houselist[i].name,
-              list: app.data.houselist[i].list,
+              list: app.data.salelist,
               flag: true
             },
-            success: res => {
-              console.log("插入成功");
+            complete: res => {
+              console.log("添加成功")
             }
           })
         }

@@ -178,7 +178,8 @@ Page({
 
         const db = wx.cloud.database()
         for (var i = app.data.list_goods.length - 1; i >= 0; i--) {
-          db.collection('goods').add({
+          wx.cloud.callFunction({
+            name: 'addGoods',
             data: {
               id: app.data.list_goods[i].id,
               price: app.data.list_goods[i].price,
@@ -188,8 +189,8 @@ Page({
               siteImg: app.data.list_goods[i].siteImg,
               flag: true
             },
-            success: res => {
-              console.log("插入成功");
+            complete: res => {
+              console.log("添加成功")
             }
           })
         }
