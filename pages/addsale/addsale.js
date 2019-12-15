@@ -40,6 +40,48 @@ Page({
     wx.redirectTo({
       url: "/pages/sale/sale"
     })
+    const db = wx.cloud.database()
+
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteSale',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        const db = wx.cloud.database()
+        db.collection('sale_list').add({
+          data: {
+            list: app.data.salelist,
+            flag: true
+          },
+          success: res => {
+            console.log("插入成功");
+          }
+        }) 
+      },
+      fail: console.error
+    }) 
+
+    // wx.cloud.callFunction({
+    //   // 云函数名称 
+    //   name: 'deleteSale',
+    //   // 传给云函数的参数 
+    //   success: function () {
+    //     console.log("删除成功")
+    //     const db = wx.cloud.database()
+    //     db.collection('sale_list').add({
+    //       data: {
+    //         list: app.data.salelist[app.data.workerid],
+    //         listnumber: app.data.workerid,
+    //         flag: true
+    //       },
+    //       success: res => {
+    //         console.log("插入成功");
+    //       }
+    //     }) 
+    //   },
+    //   fail: console.error
+    // }) 
   },
   confirm: function () {
     this.creatsale(1);
@@ -48,6 +90,27 @@ Page({
     wx.redirectTo({
       url: "/pages/sale/sale"
     })
+
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteSale',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        const db = wx.cloud.database()
+        db.collection('sale_list').add({
+          data: {
+            list: app.data.salelist,
+            flag: true
+          },
+          success: res => {
+            console.log("插入成功");
+          }
+        })
+      },
+      fail: console.error
+    }) 
+
   },
   creatsale: function (state) {
     var i = app.data.salelist[app.data.workerid].length;

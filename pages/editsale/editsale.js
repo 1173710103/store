@@ -38,6 +38,25 @@ Page({
     wx.redirectTo({
       url: "/pages/sale/sale"
     })
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteSale',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        const db = wx.cloud.database()
+        db.collection('sale_list').add({
+          data: {
+            list: app.data.salelist,
+            flag: true
+          },
+          success: res => {
+            console.log("插入成功");
+          }
+        })
+      },
+      fail: console.error
+    }) 
   },
   confirm: function () {
     this.edit();
@@ -47,6 +66,25 @@ Page({
     wx.redirectTo({
       url: "/pages/sale/sale"
     })
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteSale',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        const db = wx.cloud.database()
+        db.collection('sale_list').add({
+          data: {
+            list: app.data.salelist,
+            flag: true
+          },
+          success: res => {
+            console.log("插入成功");
+          }
+        })
+      },
+      fail: console.error
+    }) 
   },
   edit:function(){
     app.data.salelist[app.data.workerid][app.data.saleid].name = this.data.name;

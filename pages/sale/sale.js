@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    yesorno:app.data.yesorno,
     workerid : app.data.workerid,
     msgList: app.data.salelist[app.data.workerid],
     height: 0,
@@ -170,6 +169,25 @@ Page({
     if (start != app.data.salelist[app.data.workerid].length) {
       this.ontouchstart(e);
     }
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteSale',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        const db = wx.cloud.database()
+        db.collection('sale_list').add({
+          data: {
+            list: app.data.salelist,
+            flag: true
+          },
+          success: res => {
+            console.log("插入成功");
+          }
+        })
+      },
+      fail: console.error
+    }) 
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);
@@ -196,24 +214,54 @@ Page({
     return -1;
   },
   onYesTap: function (e) {
-    this.setData({
-      yesorno:1
-    })
-    app.data.yesorno = 1;
     app.data.salelist[app.data.workerid][e.target.id].state = 3;
     this.delect(e);
     app.data.salelist[app.data.workerid + 1].push(app.data.salelist[app.data.workerid][e.target.id])
     this.ontouchstart(e);
     this.onShow();
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteSale',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        const db = wx.cloud.database()
+        db.collection('sale_list').add({
+          data: {
+            list: app.data.salelist,
+            flag: true
+          },
+          success: res => {
+            console.log("插入成功");
+          }
+        })
+      },
+      fail: console.error
+    }) 
   },
   onNoTap: function (e) {
-    this.setData({
-      yesorno: 0
-    })
-    app.data.yesorno = 0;
     app.data.salelist[app.data.workerid][e.target.id].state = 2;
     this.ontouchstart(e);
     this.onShow();
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteSale',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        const db = wx.cloud.database()
+        db.collection('sale_list').add({
+          data: {
+            list: app.data.salelist,
+            flag: true
+          },
+          success: res => {
+            console.log("插入成功");
+          }
+        })
+      },
+      fail: console.error
+    }) 
   },
   deleteMsgItem: function (e) {
     var animation = wx.createAnimation({ duration: 200 });
@@ -252,10 +300,35 @@ Page({
   delect:function(e){
     for (var i = 0; i < app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list.length;i++){
       if (app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].id == app.data.salelist[app.data.workerid][e.target.id].goodselected.id){
-        app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number - app.data.salelist[app.data.workerid][e.target.id].goodselected.number;
+        app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number - app.data.salelist[app.data.workerid][e.target.id].number;
+        console.log(app.data.salelist[app.data.workerid][e.target.id].number);
         break;
       }
     }
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteHouse',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+
+        const db = wx.cloud.database()
+        for (var i = app.data.houselist.length - 1; i >= 0; i--) {
+          db.collection('house_list').add({
+            data: {
+              id: app.data.houselist[i].id,
+              name: app.data.houselist[i].name,
+              list: app.data.houselist[i].list,
+              flag: true
+            },
+            success: res => {
+              console.log("插入成功");
+            }
+          })
+        }
+      },
+      fail: console.error
+    }) 
   },
 
   /**

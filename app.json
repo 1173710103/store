@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/list/list",
     "pages/houselist/houselist",
     "pages/goods/goods",
@@ -23,7 +24,6 @@
     "pages/good/good",
     "pages/user/user",
     "pages/logs/logs",
-    "pages/index/index",
     "pages/search/search",
     "pages/searchvalue/searchvalue"
     

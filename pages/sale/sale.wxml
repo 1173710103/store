@@ -10,16 +10,16 @@
         <text  id='{{item.id}}'class='site-img' hidden="{{item.state != 3}}">已通过</text>
       </view>
       <view class='msg-menu'>
-        <view id='{{item.id}}' class='menu-delete' bindtap='onDeleteMsgTap' bindlongtap='onDeleteMsgLongtap' hidden="{{item.state != 3 && item.state != 0 && yesorno == -1}}">
+        <view id='{{item.id}}' class='menu-delete' bindtap='onDeleteMsgTap' bindlongtap='onDeleteMsgLongtap' hidden="{{item.state != 3 && item.state != 0}}">
           删除
         </view>
         <view id='{{item.id}}' class='menu-mark' bindtap='onMarkMsgTap' bindlongtap='onMarkMsgLongtap' hidden="{{item.state != 2 && item.state != 0 || workerid != 0}}">
           修改
         </view>
-        <view id='{{item.id}}' class='menu-no' bindtap='onNoTap' hidden="{{workerid != 1 || yesorno != -1}}">
+        <view id='{{item.id}}' class='menu-no' bindtap='onNoTap' hidden="{{workerid != 1 || item.state != 1}}">
         退回
         </view>
-        <view id='{{item.id}}' class='menu-yes' bindtap='onYesTap'hidden="{{workerid != 1 || yesorno != -1}}">
+        <view id='{{item.id}}' class='menu-yes' bindtap='onYesTap'hidden="{{workerid != 1 || item.state != 1}}">
         通过
         </view>
       </view>

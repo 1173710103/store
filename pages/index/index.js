@@ -51,6 +51,13 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(e)
+    if(e.detail.userInfo.nickName == "Psyduck"){
+      app.data.wokerid = 0
+    }
+    if (e.detail.userInfo.nickName == "冰封-_-童话"
+) {
+      app.data.wokerid = 1
+    }
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

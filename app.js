@@ -24,7 +24,6 @@ App({
     ],
     salelist:[],
     addoredit:0,
-    yesorno:-1,
     prifit:0
   },
   onLaunch: function () {
@@ -50,6 +49,13 @@ App({
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
           console.log(res.data)
           this.data.houselist = res.data
+        }
+      }),
+      db.collection('sale_list').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          // console.log(res.data[0].list)
+          this.data.salelist = res.data[0].list
         }
       }),
 
