@@ -2,4 +2,6 @@
 <view class='content'>
   <text>名称:{{sale.name}}</text>
   <text>数量:{{sale.number}}</text>
+  <text>售价:{{sale.price}}</text>
+  <text>利润:{{profit}}</text>
 </view>

@@ -16,10 +16,18 @@ Page({
 
   click: function (e) {
     console.log(e.target.id)
-    app.data.goodname = this.data.msgList[parseInt(e.target.id.substring(3, e.target.id.length))].carid;
-    wx.redirectTo({
-      url: "/pages/addsale/addsale"
-    })
+    app.data.goodselected = this.data.msgList[parseInt(e.target.id.substring(3, e.target.id.length))];
+    if(app.data.addoredit == 0){
+      wx.redirectTo({
+        url: "/pages/addsale/addsale"
+      })
+    }
+    else{
+      wx.redirectTo({
+        url: "/pages/editsale/editsale"
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载

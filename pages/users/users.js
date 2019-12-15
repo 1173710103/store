@@ -183,7 +183,7 @@ Page({
   getItemIndex: function (id) {
     var msgList = this.data.msgList;
     for (var i = 0; i < msgList.length; i++) {
-      if (msgList[i].id === id) {
+      if (msgList[i].id == id) {
         return i;
       }
     }

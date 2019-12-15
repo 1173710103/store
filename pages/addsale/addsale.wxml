@@ -6,6 +6,10 @@
   </view>
   <view class="page-section">
     <label class="weui-cells__title">数量(单位):</label>
+    <input class="input_number" bindinput='input_number' maxlength="10" type="number" placeholder="最大小于一万" />
+  </view>
+  <view class="page-section">
+    <label class="weui-cells__title">售价(每单位):</label>
     <input class="input_price" bindinput='input_price' maxlength="10" type="number" placeholder="最大小于一万" />
   </view>
 </view>

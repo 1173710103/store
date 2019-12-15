@@ -9,7 +9,10 @@ Page({
   data: {
     name: '',
     number: '',
-    sale: {}
+    price:'',
+    sale: {},
+    houseselectedid:0,
+    goodselected:{}
   },
 
   input_name: function () {
@@ -19,23 +22,31 @@ Page({
     })
   },
 
-  input_price: function (in_number) {
+  input_number: function (in_number) {
     this.setData({
       number: in_number.detail.value
     })
   },
 
-  save: function () {
-    this.creatsale(false);
-    wx.navigateBack({
+  input_price: function (in_price) {
+    this.setData({
+      price: in_price.detail.value
+    })
+  },
 
+  save: function () {
+    this.creatsale(0);
+    app.data.salelist[app.data.workerid][app.data.salelist[app.data.workerid].length - 1].profit = (this.data.sale.price - app.data.goodselected.price) * this.data.sale.number;
+    wx.redirectTo({
+      url: "/pages/sale/sale"
     })
   },
   confirm: function () {
-    this.creatsale(true);
+    this.creatsale(1);
     app.data.salelist[app.data.workerid + 1].push(this.data.sale)
-    wx.navigateBack({
-
+    app.data.salelist[app.data.workerid][app.data.salelist[app.data.workerid].length - 1].profit= (this.data.sale.price - app.data.goodselected.price) * this.data.sale.number;
+    wx.redirectTo({
+      url: "/pages/sale/sale"
     })
   },
   creatsale: function (state) {
@@ -43,7 +54,11 @@ Page({
     this.data.sale.number = this.data.number;
     this.data.sale.name = this.data.name;
     this.data.sale.id = i;
-    this.data.sale.state = state;//false保存，true提交
+    this.data.sale.price = this.data.price;
+    this.data.sale.profit = 0;
+    this.data.sale.goodselected = this.data.goodselected;
+    this.data.sale.houseselectedid = this.data.houseselectedid;
+    this.data.sale.state = state;//0保存，1提交且未审核，2已审核未通过，3已审核通过
     app.data.salelist[app.data.workerid].push(this.data.sale);
   },
   /**
@@ -51,8 +66,11 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      name: app.data.goodname
+      name: app.data.goodselected.carid,
+      goodselected: app.data.goodselected,
+      houseselectedid: app.data.house_id
     })
+    console.log(app.data.goodselected)
   },
 
   /**

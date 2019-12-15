@@ -9,51 +9,70 @@ Page({
   data: {
     name: '',
     number: '',
+    price:'',
     sale:{}
   },
 
-  input_name: function (in_name) {
-    this.setData({
-      name: in_name.detail.value
+  input_name: function () {
+    wx.hideKeyboard()
+    wx.redirectTo({
+      url: "/pages/houseslistforselecting/houseslistforselecting",
     })
   },
 
-  input_price: function (in_numner) {
+  input_number: function (in_number) {
     this.setData({
-      number: in_numner.detail.value
+      number: in_number.detail.value
+    })
+  },
+
+  input_price: function (in_price) {
+    this.setData({
+      price: in_price.detail.value
     })
   },
 
   save: function () {
-    this.creatsale(false);
-    wx.navigateBack({
-
+    this.edit();
+    app.data.salelist[app.data.workerid][app.data.saleid].profit = (app.data.salelist[app.data.workerid][app.data.saleid].price - app.data.goodselected.price) * app.data.salelist[app.data.workerid][app.data.saleid].number;
+    wx.redirectTo({
+      url: "/pages/sale/sale"
     })
   },
   confirm: function () {
-    app.data.salelist[app.data.workerid][app.data.saleid].state = true;
+    this.edit();
+    app.data.salelist[app.data.workerid][app.data.saleid].state = 1;
     app.data.salelist[app.data.workerid + 1].push(app.data.salelist[app.data.workerid][app.data.saleid])
-    wx.navigateBack({
-
+    app.data.salelist[app.data.workerid][app.data.saleid].profit = (app.data.salelist[app.data.workerid][app.data.saleid].price - app.data.goodselected.price) * app.data.salelist[app.data.workerid][app.data.saleid].number;
+    wx.redirectTo({
+      url: "/pages/sale/sale"
     })
   },
-  creatsale: function (state) {
-    var i = app.data.salelist[app.data.workerid].length;
-    this.data.sale.number = this.data.number;
-    this.data.sale.name = this.data.name;
-    this.data.sale.id = i;
-    this.data.sale.state = state;//false保存，true提交
-    app.data.salelist[app.data.workerid].push(this.data.sale);
+  edit:function(){
+    app.data.salelist[app.data.workerid][app.data.saleid].name = this.data.name;
+    app.data.salelist[app.data.workerid][app.data.saleid].number = this.data.number;
+    app.data.salelist[app.data.workerid][app.data.saleid].price = this.data.price;
+    app.data.salelist[app.data.workerid][app.data.saleid].houseselectedid = app.data.house_id;
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
+    if(app.data.addoredit == 0){
+      this.setData({
+        name: app.data.salelist[app.data.workerid][app.data.saleid].name,
+      })
+    }
+    if (app.data.addoredit == 1) {
+      this.setData({
+        name: app.data.goodselected.carid,
+      })
+    }
     this.setData({
-      name: app.data.salelist[app.data.workerid][app.data.saleid].name,
-      number: app.data.salelist[app.data.workerid][app.data.saleid].number
+      number: app.data.salelist[app.data.workerid][app.data.saleid].number,
+      price: app.data.salelist[app.data.workerid][app.data.saleid].price
     })
+    
   },
 
   /**

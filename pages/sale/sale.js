@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    yesorno:app.data.yesorno,
+    workerid : app.data.workerid,
     msgList: app.data.salelist[app.data.workerid],
     height: 0,
     scrollY: true,
@@ -24,7 +26,8 @@ Page({
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
   add: function () {
     app.data.state = 0;
-    app.data.goodname = '';
+    app.data.addoredit = 0;
+    app.data.goodselected = {};
     wx.navigateTo({
       url: '/pages/addsale/addsale',
     })
@@ -41,10 +44,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      console.log("onLoad");
   },
 
   ontouchstart: function (e) {
+    console.log(app.data.salelist[app.data.workerid][e.target.id].state)
+    if (app.data.salelist[app.data.workerid][e.target.id].state == 1 && this.data.workerid == 0){
+      this.maxMoveLeft  = 0; //消息列表项最大左滑距离
+      this.correctMoveLeft = 0; //显示菜单时的左滑距离
+      this.thresholdMoveLeft = 0;//左滑阈值，超过则显示菜单
+    }
     if (this.showState === 1) {
       this.touchStartState = 1;
       this.showState = 0;
@@ -168,6 +177,7 @@ Page({
   onMarkMsgTap: function (e) {
     app.data.saleid = e.target.id;
     app.data.state = 1;
+    app.data.addoredit = 1;
     wx.navigateTo({
       url: '/pages/editsale/editsale',
     })
@@ -184,6 +194,26 @@ Page({
       }
     }
     return -1;
+  },
+  onYesTap: function (e) {
+    this.setData({
+      yesorno:1
+    })
+    app.data.yesorno = 1;
+    app.data.salelist[app.data.workerid][e.target.id].state = 3;
+    this.delect(e);
+    app.data.salelist[app.data.workerid + 1].push(app.data.salelist[app.data.workerid][e.target.id])
+    this.ontouchstart(e);
+    this.onShow();
+  },
+  onNoTap: function (e) {
+    this.setData({
+      yesorno: 0
+    })
+    app.data.yesorno = 0;
+    app.data.salelist[app.data.workerid][e.target.id].state = 2;
+    this.ontouchstart(e);
+    this.onShow();
   },
   deleteMsgItem: function (e) {
     var animation = wx.createAnimation({ duration: 200 });
@@ -219,6 +249,15 @@ Page({
     this.setData(param);
   },
 
+  delect:function(e){
+    for (var i = 0; i < app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list.length;i++){
+      if (app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].id == app.data.salelist[app.data.workerid][e.target.id].goodselected.id){
+        app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number - app.data.salelist[app.data.workerid][e.target.id].goodselected.number;
+        break;
+      }
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -233,7 +272,7 @@ Page({
     this.pixelRatio = app.data.deviceInfo.pixelRatio;
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
-    this.setData({ msgList: app.data.salelist[app.data.workerid], height: height });
+    this.setData({ msgList: app.data.salelist[app.data.workerid], height: height ,yesorno:app.data.yesorno});
     console.log(this.data.msgList);
   },
 

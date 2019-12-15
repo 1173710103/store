@@ -32,9 +32,9 @@ Page({
   },
 
   confirm: function () {
-    app.data.list_house[app.data.goodsinhouse_id].price = this.data.price;
-    app.data.list_house[app.data.goodsinhouse_id].carid = this.data.name;
-    app.data.list_house[app.data.goodsinhouse_id].number = this.data.number;
+    app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].price = this.data.price;
+    app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].carid = this.data.name;
+    app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number = this.data.number;
     wx.navigateBack({
 
     })
@@ -44,10 +44,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
+    console.log(app.data.goodsinhouse_id)
     this.setData({
-      name: app.data.list_house[app.data.goodsinhouse_id].carid,
-      price: app.data.list_house[app.data.goodsinhouse_id].price,
-      number: app.data.list_house[app.data.goodsinhouse_id].number
+      name: app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].carid,
+      price: app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].price,
+      number: app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number
     })
   },
 

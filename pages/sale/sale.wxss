@@ -90,6 +90,29 @@
   text-align: center;
   line-height: 150rpx;
 }
+.menu-no {
+  position: absolute;
+  width: 150rpx;
+  height: 148rpx;
+  top: 1rpx;
+  right: 0;
+  background-color: rgb(255, 58, 50);
+  color: #fff;
+  text-align: center;
+  line-height: 150rpx;
+}
+.menu-yes {
+  position: absolute;
+  width: 200rpx;
+  height: 148rpx;
+  top: 1rpx;
+  right: 150rpx;
+  background-color: rgb(7, 247, 47);
+  color: #fff;
+  text-align: center;
+  line-height: 150rpx;
+}
+
 
 /* 底部按钮 */
 

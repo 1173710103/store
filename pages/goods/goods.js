@@ -35,10 +35,9 @@ Page({
   },
 
   click: function (e) {
-    console.log(e);
-    app.data.house_id = e.target.id
+    app.data.good_id = e.target.id.substring(3, e.target.id.length);
     wx.navigateTo({
-      url: "/pages/goodslistforselecting/goodslistforselecting",
+      url: '/pages/good/good',
     })
   },
   /**
@@ -186,8 +185,9 @@ Page({
   },
   getItemIndex: function (id) {
     var msgList = this.data.msgList;
+    console.log(msgList)
     for (var i = 0; i < msgList.length; i++) {
-      if (msgList[i].id === id) {
+      if (msgList[i].id == id) {
         return i;
       }
     }

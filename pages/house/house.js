@@ -181,7 +181,8 @@ Page({
     console.log(e);
   },
   onMarkMsgTap: function (e) {
-    app.data.goodinhouse_id = e.target.id.substring(3, e.target.id.length);
+    app.data.goodinhouse_id = parseInt(e.target.id.substring(3, e.target.id.length));
+    console.log(app.data.goodinhouse_id);
     wx.navigateTo({
       url: '/pages/editgoodsinhouse/editgoodsinhouse',
     })

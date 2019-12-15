@@ -5,12 +5,12 @@ App({
     deviceInfo: {},
     list_goods:[],
     list_users:[],
-    goodname:'',
+    goodselected:{},
     username:'',
     house_id:0,//命名原则正好和good和user相反
     good_id:'',
     user_id:'',
-    goodsinhouse_id: '',
+    goodsinhouse_id: 0,
     list_house: {name:"大仓库",id:0,list:[]},
     list_house1: { name: "门店仓库", id:1,list:[] },
     list_worker_0:[],
@@ -20,9 +20,22 @@ App({
     workerid:0,
     saleid:-1,
     houselist: [],
-    salelist:[]
+    salelist:[],
+    addoredit:0,
+    yesorno:-1,
+    prifit:0
   },
   onLaunch: function () {
+    // var sale  = {};
+    // sale.name = '1';
+    // sale.number = '1';
+    // sale.price = '2';
+    // sale.profit = '2';
+    // sale.id = 0;
+    // sale.state = 1;
+    // sale.goodselected = {id:'id-0',number:10,};
+    // sale.houseselectedid =  0;
+    this.data.list_worker_1.push(sale);
     this.data.houselist.push(this.data.list_house);
     this.data.houselist.push(this.data.list_house1);
     this.data.salelist.push(this.data.list_worker_0);

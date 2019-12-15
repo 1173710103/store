@@ -18,7 +18,7 @@ Page({
     this.setData({
       id: app.data.goodsinhouse_id
     });
-    var msg = app.data.list_house[parseInt(this.data.id)];
+    var msg = app.data.houselist[app.data.houseid].list[parseInt(this.data.id)];
     this.setData({
       goodsinhouse: msg
     })
