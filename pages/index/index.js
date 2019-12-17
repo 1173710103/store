@@ -52,11 +52,11 @@ Page({
   getUserInfo: function(e) {
     console.log(e)
     if(e.detail.userInfo.nickName == "Psyduck"){
-      app.data.wokerid = 0
+      app.data.workerid = 1
     }
     if (e.detail.userInfo.nickName == "冰封-_-童话"
 ) {
-      app.data.wokerid = 1
+      app.data.workerid = 0
     }
     console.log(app.data.wokerid)
     app.globalData.userInfo = e.detail.userInfo

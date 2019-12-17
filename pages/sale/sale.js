@@ -43,7 +43,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log("onLoad");
+    console.log(app.data.workerid)
   },
 
   ontouchstart: function (e) {
@@ -343,7 +343,7 @@ Page({
     this.pixelRatio = app.data.deviceInfo.pixelRatio;
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
-    this.setData({ msgList: app.data.salelist[app.data.workerid], height: height ,yesorno:app.data.yesorno});
+    this.setData({ msgList: app.data.salelist[app.data.workerid], height: height,workerid:app.data.workerid});
     console.log(this.data.msgList);
   },
 

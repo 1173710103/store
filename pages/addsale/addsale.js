@@ -49,7 +49,7 @@ Page({
       success: function () {
         console.log("删除成功")
         wx.cloud.callFunction({
-          name: 'addGoods',
+          name: 'addSale',
           data: {
             list: app.data.salelist,
             flag: true
@@ -99,7 +99,7 @@ Page({
         console.log("删除成功")
         const db = wx.cloud.database()
         wx.cloud.callFunction({
-          name: 'addGoods',
+          name: 'addSale',
           data: {
             list: app.data.salelist,
             flag: true

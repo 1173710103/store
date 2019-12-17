@@ -44,8 +44,8 @@ Page({
         carid: msg_users.carid,
         msgText: msg_users.msgText,
         id: msg_users.id,
-        headerImg: msg_goods.headerImg,
-        siteImg: msg_goods.siteImg,
+        headerImg: msg_users.headerImg,
+        siteImg: msg_users.siteImg,
         flag: true
       },
       complete: res => {

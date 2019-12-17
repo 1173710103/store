@@ -27,6 +27,16 @@ App({
     prifit:0
   },
   onLaunch: function () {
+    // var sale = {};
+    // sale.name = '1';
+    // sale.number = '1';
+    // sale.price = '2';
+    // sale.profit = '2';
+    // sale.id = 0;
+    // sale.state = 1;
+    // sale.goodselected = { id: 'id-0', number: 10, };
+    // sale.houseselectedid = 0;
+    // this.data.list_worker_1.push(sale);
 
     wx.cloud.init()
     const db = wx.cloud.database()
@@ -37,38 +47,31 @@ App({
         this.data.list_goods = res.data
       }
     }),
-      db.collection('users').orderBy('id', 'asc').get({
+    db.collection('users').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        console.log(res.data)
+        this.data.list_users = res.data
+      }
+    }),
+    db.collection('house_list').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        //console.log(res.data)
+        this.data.houselist = res.data
+      }
+    }),
+    // console.log("!!!")
+    db.collection('sale_list').orderBy('id', 'asc').get({
         success: res => {
-          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          //console.log(res.data)
-          this.data.list_users = res.data
-        }
-      }),
-      db.collection('house_list').orderBy('id', 'asc').get({
-        success: res => {
-          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
-          this.data.houselist = res.data
-        }
-      }),
-      db.collection('sale_list').get({
-        success: res => {
-          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          // console.log(res.data[0].list)
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        //console.log(res.data.length)
+        if(res.data.length!=0)
           this.data.salelist = res.data[0].list
-        }
-      }),
+      }
+    }),
 
-    // var sale  = {};
-    // sale.name = '1';
-    // sale.number = '1';
-    // sale.price = '2';
-    // sale.profit = '2';
-    // sale.id = 0;
-    // sale.state = 1;
-    // sale.goodselected = {id:'id-0',number:10,};
-    // sale.houseselectedid =  0;
-    //this.data.list_worker_1.push(sale);
+    
     // this.data.houselist.push(this.data.list_house);
     // this.data.houselist.push(this.data.list_house1);
     this.data.salelist.push(this.data.list_worker_0);
