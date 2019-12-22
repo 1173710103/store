@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    profit:0,
     id: app.data.saleid,
     sale: {}
   },
@@ -18,7 +17,6 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: app.data.saleid,
-      profit: app.data.salelist[app.data.workerid][app.data.saleid].profit
     });
     var msg = app.data.salelist[app.data.workerid][parseInt(this.data.id)];
     this.setData({
@@ -39,8 +37,11 @@ Page({
   onShow: function () {
     this.setData({
       id: app.data.saleid,
-      profit:app.data.salelist[app.data.workerid][app.data.saleid].profit
-    })
+    });
+    var msg = app.data.salelist[app.data.workerid][parseInt(this.data.id)];
+    this.setData({
+      sale: msg
+    });
   },
 
   /**

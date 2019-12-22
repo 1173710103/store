@@ -49,10 +49,14 @@ Page({
       goodsinhouse.number = this.data.number;
       goodsinhouse.msgText = '序号000' + i;
       goodsinhouse.id = "id-" + i;
+      goodsinhouse.totalprice = parseInt(this.data.price) * parseInt(this.data.number);
       goodsinhouse.headerImg = '../../images/tab/a1.png';
       goodsinhouse.siteImg = '../../img/site.png';
       app.data.houselist[houseid].list.push(goodsinhouse);
     }
+    console.log(app.data.houselist[houseid]);
+    app.data.houselist[houseid].number = parseInt(this.data.number) + app.data.houselist[houseid].number;
+    app.data.houselist[houseid].price = parseInt(this.data.number)* parseInt(this.data.price)+ app.data.houselist[houseid].price;
     wx.navigateBack({
 
     })

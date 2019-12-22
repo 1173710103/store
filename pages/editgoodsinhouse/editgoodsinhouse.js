@@ -32,9 +32,13 @@ Page({
   },
 
   confirm: function () {
+    console.log(app.data.houselist);
+    app.data.houselist[app.data.houseid].number = app.data.houselist[app.data.houseid].number - parseInt(app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number) + parseInt(this.data.number);
+    console.log(app.data.houselist[app.data.houseid].number,parseInt(app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number),parseInt(this.data.number));
+    app.data.houselist[app.data.houseid].price = app.data.houselist[app.data.houseid].price - parseInt(app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number) * parseInt(app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].price) + parseInt(this.data.number) * parseInt(this.data.price);
     app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].price = this.data.price;
     app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].carid = this.data.name;
-    app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number = this.data.number;
+    app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number = this.data.number; 
     wx.navigateBack({
 
     })

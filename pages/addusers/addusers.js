@@ -30,8 +30,10 @@ Page({
     msg_users.carid = this.data.name;
     msg_users.msgText = '序号000' + i;
     msg_users.id = "id-"+i;
+    msg_users.usertype = "";
     msg_users.headerImg = '../../images/tab/b.png';
     msg_users.siteImg = '../../img/site.png';
+    console.log(msg_users);
     app.data.list_users.push(msg_users);
     wx.navigateBack({
 

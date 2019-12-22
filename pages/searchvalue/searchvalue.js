@@ -8,7 +8,7 @@ Page({
    */
   data: {
     searchValue: '',
-    msgList: app.data.list_house,
+    msgList: app.data.houselist[app.data.houseid].list,
     msgneed:[],
     height: 0,
     scrollY: true,
@@ -42,8 +42,8 @@ Page({
       this.setData({
         searchValue: options.searchValue
       });
-      for(var i = 0 ; i < app.data.list_house.length; i++){
-        if (app.data.list_house[i].carid == this.data.searchValue){
+      for(var i = 0 ; i < app.data.houselist[app.data.houseid].list.length; i++){
+        if (app.data.houselist[app.data.houseid].list[i].carid == this.data.searchValue){
           this.data.hidden = true;
         }
       }
@@ -164,20 +164,45 @@ Page({
   },
   onDeleteMsgTap: function (e) {
     var start = parseInt(e.target.id.substring(3, e.target.id.length));
-    app.data.list_house.splice(start, 1);
-    console.log(start, app.data.list_house.length);
-    for (var i = start; i < app.data.list_house.length; i++) {
-      app.data.list_house[i].msgText = '序号000' + i;
-      app.data.list_house[i].id = "id-" + i;
-      console.log(app.data.list_house[i]);
+    app.data.houselist[app.data.houseid].list.splice(start, 1);
+    console.log(start, app.data.houselist[app.data.houseid].list.length);
+    for (var i = start; i < app.data.houselist[app.data.houseid].list.length; i++) {
+      app.data.houselist[app.data.houseid].list[i].msgText = '序号000' + i;
+      app.data.houselist[app.data.houseid].list[i].id = "id-" + i;
+      console.log(app.data.houselist[app.data.houseid].list[i]);
     }
-    console.log(app.data.list_house);
+    console.log(app.data.houselist[app.data.houseid].list);
     this.setData({
-      msgList: app.data.list_house
+      msgList: app.data.houselist[app.data.houseid].list
     })
-    if (start != app.data.list_house.length) {
+    if (start != app.data.houselist[app.data.houseid].list.length) {
       this.ontouchstart(e);
     }
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteHouse',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+
+        const db = wx.cloud.database()
+        for (var i = app.data.houselist.length - 1; i >= 0; i--) {
+          wx.cloud.callFunction({
+            name: 'addGoodintoHouse',
+            data: {
+              id: app.data.houselist[i].id,
+              name: app.data.houselist[i].name,
+              list: app.data.houselist[i].list,
+              flag: true
+            },
+            complete: res => {
+              console.log("添加成功")
+            }
+          })
+        }
+      },
+      fail: console.error
+    }) 
   },
   onDeleteMsgLongtap: function (e) {
     console.log(e);
@@ -209,7 +234,7 @@ Page({
     setTimeout(function () {
       var index = s.getItemIndex(e.currentTarget.id);
       s.data.msgList.splice(index, 1);
-      s.setData({ msgList: app.data.list_house });
+      s.setData({ msgList: app.data.houselist[app.data.houseid].list });
     }, 200);
     this.showState = 0;
     this.setData({ scrollY: true });
@@ -248,7 +273,7 @@ Page({
     this.pixelRatio = app.data.deviceInfo.pixelRatio;
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
-    this.setData({ msgList: app.data.list_house, height: height });
+    this.setData({ msgList: app.data.houselist[app.data.houseid].list, height: height });
   },
 
   /**

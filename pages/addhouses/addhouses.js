@@ -21,6 +21,8 @@ Page({
     var msg_house = {};
     msg_house.name = this.data.name;
     msg_house.id = i;
+    msg_house.number = 0;
+    msg_house.price = 0;
     msg_house.list=[];
     app.data.houselist.push(msg_house);
     wx.navigateBack({
@@ -32,6 +34,8 @@ Page({
       data: {
         name: msg_house.name,
         id: msg_house.id,
+        number: msg_house.number,
+        price: msg_house.price,
         list: msg_house.list,
         flag: true
       },

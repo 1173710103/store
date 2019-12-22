@@ -2,4 +2,5 @@
 <view class = 'content'>
   <text>姓名:{{msg_users.carid}}</text>
   <text>年龄:{{msg_users.age}}</text>
+  <text>类型:{{msg_users.type}}</text>
 </view>

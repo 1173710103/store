@@ -6,6 +6,7 @@
     "pages/goods/goods",
     "pages/houseslistforselecting/houseslistforselecting",
     "pages/goodslistforselecting/goodslistforselecting",
+    "pages/userslistforselecting/userslistforselecting",
     "pages/users/users",
     "pages/house/house",
     "pages/sale/sale",

@@ -13,12 +13,6 @@ Page({
   },
   lastShowMsgId: '', //记录上次显示菜单的消息id
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
-  add: function () {
-    app.data.state = 0;
-    wx.navigateTo({
-      url: '/pages/addgoods/addgoods',
-    })
-  },
 
   click: function (e) {
     console.log(e.target.id);
