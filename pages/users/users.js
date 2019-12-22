@@ -44,7 +44,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    wx.cloud.init()
+    const db = wx.cloud.database()
+    db.collection('goods').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        //console.log(res.data)
+        app.data.list_goods = res.data
+      }
+    }),
+      db.collection('users').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          console.log(res.data)
+          app.data.list_users = res.data
+        }
+      }),
+      db.collection('house_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data)
+          app.data.houselist = res.data
+        }
+      }),
+      // console.log("!!!")
+      db.collection('sale_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data.length)
+          if (res.data.length != 0)
+            app.data.salelist = res.data[0].list
+        }
+      })
   },
 
   ontouchstart: function (e) {
@@ -267,6 +298,38 @@ Page({
     var height = windowHeight;
     this.setData({ msgList: app.data.list_users, height: height });
     console.log(this.data.msgList);
+    wx.cloud.init()
+    const db = wx.cloud.database()
+    db.collection('goods').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        //console.log(res.data)
+        app.data.list_goods = res.data
+      }
+    }),
+      db.collection('users').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          console.log(res.data)
+          app.data.list_users = res.data
+        }
+      }),
+      db.collection('house_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data)
+          app.data.houselist = res.data
+        }
+      }),
+      // console.log("!!!")
+      db.collection('sale_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data.length)
+          if (res.data.length != 0)
+            app.data.salelist = res.data[0].list
+        }
+      })
   },
 
   /**

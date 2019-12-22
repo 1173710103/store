@@ -44,6 +44,38 @@ Page({
    */
   onLoad: function (options) {
     console.log(app.data.workerid)
+    wx.cloud.init()
+    const db = wx.cloud.database()
+    db.collection('goods').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        //console.log(res.data)
+        app.data.list_goods = res.data
+      }
+    }),
+      db.collection('users').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          console.log(res.data)
+          app.data.list_users = res.data
+        }
+      }),
+      db.collection('house_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data)
+          app.data.houselist = res.data
+        }
+      }),
+      // console.log("!!!")
+      db.collection('sale_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data.length)
+          if (res.data.length != 0)
+            app.data.salelist = res.data[0].list
+        }
+      })
   },
 
   ontouchstart: function (e) {
@@ -213,12 +245,21 @@ Page({
     }
     return -1;
   },
+
+  reflesh:function(){
+    this.pixelRatio = app.data.deviceInfo.pixelRatio;
+    var windowHeight = app.data.deviceInfo.windowHeight;
+    var height = windowHeight;
+    this.setData({ msgList: app.data.salelist[app.data.workerid], height: height, workerid: app.data.workerid });
+    console.log(this.data.msgList);
+  },
   onYesTap: function (e) {
+    app.data.salelist[app.data.workerid - 1][e.target.id].state = 3;
     app.data.salelist[app.data.workerid][e.target.id].state = 3;
     this.delect(e);
     app.data.salelist[app.data.workerid + 1].push(app.data.salelist[app.data.workerid][e.target.id])
     this.ontouchstart(e);
-    this.onShow();
+    this.reflesh();
     wx.cloud.callFunction({
       // 云函数名称 
       name: 'deleteSale',
@@ -235,14 +276,17 @@ Page({
             console.log("添加成功")
           }
         })
+        this.onShow();
       },
-      fail: console.error
-    }) 
+      fail: console.error,
+    })
+    
   },
   onNoTap: function (e) {
+    app.data.salelist[app.data.workerid - 1][e.target.id].state = 2;
     app.data.salelist[app.data.workerid][e.target.id].state = 2;
     this.ontouchstart(e);
-    this.onShow();
+    this.reflesh();
     wx.cloud.callFunction({
       // 云函数名称 
       name: 'deleteSale',
@@ -259,6 +303,7 @@ Page({
             console.log("添加成功")
           }
         })
+        this.onShow();
       },
       fail: console.error
     }) 
@@ -316,7 +361,9 @@ Page({
           wx.cloud.callFunction({
             name: 'addGoodintoHouse',
             data: {
-              list: app.data.salelist,
+              id: app.data.houselist[i].id,
+              name: app.data.houselist[i].name,
+              list: app.data.houselist[i].list,
               flag: true
             },
             complete: res => {
@@ -345,6 +392,38 @@ Page({
     var height = windowHeight;
     this.setData({ msgList: app.data.salelist[app.data.workerid], height: height,workerid:app.data.workerid});
     console.log(this.data.msgList);
+    wx.cloud.init()
+    const db = wx.cloud.database()
+    db.collection('goods').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        //console.log(res.data)
+        app.data.list_goods = res.data
+      }
+    }),
+      db.collection('users').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          console.log(res.data)
+          app.data.list_users = res.data
+        }
+      }),
+      db.collection('house_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data)
+          app.data.houselist = res.data
+        }
+      }),
+      // console.log("!!!")
+      db.collection('sale_list').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data.length)
+          if (res.data.length != 0)
+            app.data.salelist = res.data[0].list
+        }
+      })
   },
 
   /**

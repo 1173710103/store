@@ -9,8 +9,8 @@ Page({
   onLoad: function () {
     var that = this;
     var name = [];
-    for(var i = 0 ;i < app.data.list_house.length ;i++){
-      name.push(app.data.list_house[i].carid);
+    for(var i = 0 ;i < app.data.houselist[app.data.houseid].list.length ;i++){
+      name.push(app.data.houselist[app.data.houseid].list[i].carid);
     }
     WxSearch.init(
       that,  // 本页面一个引用

@@ -1,9 +1,9 @@
 {
   "name": "cloudfunctions",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
+    "mysql2": "^2.0.2",
     "wx-server-sdk": "^1.6.0"
   },
   "devDependencies": {},
@@ -11,5 +11,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1173710103/store.git"
+  },
+  "bugs": {
+    "url": "https://github.com/1173710103/store/issues"
+  },
+  "homepage": "https://github.com/1173710103/store#readme",
+  "description": ""
 }
