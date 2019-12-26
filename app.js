@@ -6,6 +6,7 @@ App({
     list_goods:[],
     list_users:[],
     goodselected:{},
+    userselected: {},
     username:'',
     house_id:0,//命名原则正好和good和user相反
     good_id:'',

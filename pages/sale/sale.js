@@ -27,6 +27,7 @@ Page({
     app.data.state = 0;
     app.data.addoredit = 0;
     app.data.goodselected = {};
+    app.data.userselected = {};
     wx.navigateTo({
       url: '/pages/addsale/addsale',
     })

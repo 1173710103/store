@@ -22,11 +22,11 @@ Page({
   showState: 0, //0 未显示菜单 1显示菜单
   touchStartState: 0, // 开始触摸时的状态 0 未显示菜单 1 显示菜单
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
-  add: function () {
-    wx.navigateTo({
-      url: '/pages/addusers/addusers',
-    })
-  },
+  // add: function () {
+  //   wx.navigateTo({
+  //     url: '/pages/addusers/addusers',
+  //   })
+  // },
 
   back: function () {
     wx.redirectTo({

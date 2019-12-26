@@ -13,7 +13,7 @@
     <view wx:if = "{{item.id}}" class='msg-item'>
         <view id='{{item.id}}' class='msg' animation='{{item.animation}}' bindtouchstart='ontouchstart' bindtouchmove='ontouchmove' bindtouchend='ontouchend' bindtap='click'>
           <text id='{{item.id}}' class='user-name'>{{item.carid}}</text>
-          <text  id='{{item.id}}'class='msg-text'>{{item.msgText}}</text>
+          <text  id='{{item.id}}'class='msg-text'>积压资金:{{item.totalprice}}</text>
           <text  id='{{item.id}}'class='site-img'>{{item.number}}</text>
         </view>
         <view class='msg-menu'>

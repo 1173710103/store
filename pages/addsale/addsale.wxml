@@ -1,5 +1,10 @@
 <!--pages/addsale/addsale.wxml-->
 <view class="page-body">
+
+<view class="page-section">
+    <label class="weui-cells__title">客户:</label>
+    <input class="input_user" bindfocus ='input_user' value = '{{username}}' placeholder="用户名称"/>
+  </view>
   <view class="page-section">
     <label class="weui-cells__title">名称:</label>
     <input class="input_name" bindfocus ='input_name' value = '{{name}}' placeholder="货品名称"/>

@@ -8,17 +8,26 @@ Page({
    */
   data: {
     name: '',
+    username:'',
     number: '',
     price:'',
     sale: {},
     houseselectedid:0,
-    goodselected:{}
+    goodselected:{},
+    user:{}
   },
 
   input_name: function () {
     wx.hideKeyboard()
     wx.redirectTo({
       url: "/pages/houseslistforselecting/houseslistforselecting",
+    })
+  },
+
+  input_user: function () {
+    wx.hideKeyboard()
+    wx.redirectTo({
+      url: "/pages/userslistforselecting/userslistforselecting",
     })
   },
 
@@ -87,6 +96,13 @@ Page({
     this.creatsale(1);
     app.data.salelist[app.data.workerid + 1].push(this.data.sale)
     app.data.salelist[app.data.workerid][app.data.salelist[app.data.workerid].length - 1].profit= (this.data.sale.price - app.data.goodselected.price) * this.data.sale.number;
+    if (this.data.sale.number == 1){
+      app.data.list_users[parseInt(this.data.sale.user.id.substring(3, this.data.sale.user.id.length))].usertype = "零售客户";
+    }
+    if (this.data.sale.number > 1) {
+      app.data.list_users[parseInt(this.data.sale.user.id.substring(3, this.data.sale.user.id.length))].usertype = "批发客户";
+    }
+    console.log(app.data.list_users[parseInt(this.data.sale.user.id.substring(3, this.data.sale.user.id.length))])
     wx.redirectTo({
       url: "/pages/sale/sale"
     })
@@ -117,6 +133,8 @@ Page({
     var i = app.data.salelist[app.data.workerid].length;
     this.data.sale.number = this.data.number;
     this.data.sale.name = this.data.name;
+    this.data.sale.user = this.data.user;
+    this.data.sale.username = this.data.username;
     this.data.sale.id = i;
     this.data.sale.price = this.data.price;
     this.data.sale.profit = 0;
@@ -132,6 +150,8 @@ Page({
     this.setData({
       name: app.data.goodselected.carid,
       goodselected: app.data.goodselected,
+      username: app.data.userselected.carid,
+      user: app.data.userselected,
       houseselectedid: app.data.house_id
     })
     console.log(app.data.goodselected)
