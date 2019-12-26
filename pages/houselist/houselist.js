@@ -212,6 +212,7 @@ Page({
               id: msg_users.id,
               headerImg: msg_goods.headerImg,
               siteImg: msg_goods.siteImg,
+              usertype: msg_users.usertype,
               flag: true
             },
             complete: res => {

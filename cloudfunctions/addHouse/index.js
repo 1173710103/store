@@ -13,6 +13,7 @@ exports.main = async (event, context) => {
       id: event.id,
       number: event.number,
       price: event.price,
+      totalprice:event.totalprice,
       list: event.list,
       flag: event.flag
     }

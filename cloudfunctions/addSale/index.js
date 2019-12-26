@@ -10,7 +10,9 @@ exports.main = async (event, context) => {
   return await db.collection('sale_list').add({
     data: {
       list: event.list,
-      flag: event.flag
+      flag: event.flag,
+      user: event.user,
+      username: event.username
     }
   })
 }

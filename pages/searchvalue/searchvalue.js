@@ -193,6 +193,9 @@ Page({
               id: app.data.houselist[i].id,
               name: app.data.houselist[i].name,
               list: app.data.houselist[i].list,
+              number: app.data.houselist[i].number,
+              price: app.data.houselist[i].price,
+              totalprice: app.data.houselist[i].totalprice,
               flag: true
             },
             complete: res => {

@@ -61,6 +61,8 @@ Page({
           name: 'addSale',
           data: {
             list: app.data.salelist,
+            user: app.data.user,
+            username: app.data.username,
             flag: true
           },
           complete: res => {
@@ -102,7 +104,40 @@ Page({
     if (this.data.sale.number > 1) {
       app.data.list_users[parseInt(this.data.sale.user.id.substring(3, this.data.sale.user.id.length))].usertype = "批发客户";
     }
-    console.log(app.data.list_users[parseInt(this.data.sale.user.id.substring(3, this.data.sale.user.id.length))])
+    console.log(app.data.list_users);
+    var list = app.data.list_users;
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteUsers',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        console.log(app.data.list_users);
+        console.log(list);
+
+        const db = wx.cloud.database()
+        //console.log(app.data.list_users)
+        for (var i = list.length - 1; i >= 0; i--) {
+          wx.cloud.callFunction({
+            name: 'addUsers',
+            data: {
+              age: list[i].age,
+              carid: list[i].carid,
+              msgText: list[i].msgText,
+              id: list[i].id,
+              headerImg: list[i].headerImg,
+              siteImg: list[i].siteImg,
+              usertype: list[i].usertype,
+              flag: true
+            },
+            complete: res => {
+              console.log("添加成功")
+            }
+          })
+        }
+      },
+      fail: console.error
+    }) 
     wx.redirectTo({
       url: "/pages/sale/sale"
     })
@@ -118,12 +153,15 @@ Page({
           name: 'addSale',
           data: {
             list: app.data.salelist,
+            user: app.data.user,
+            username: app.data.username,
             flag: true
           },
           complete: res => {
             console.log("添加成功")
           }
         })
+        
       },
       fail: console.error
     }) 

@@ -15,6 +15,7 @@ exports.main = async (event, context) => {
       id: event.id,
       headerImg: event.headerImg,
       siteImg: event.siteImg,
+      usertype: event.usertype,
       flag: event.flag
     }
   })

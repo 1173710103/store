@@ -48,6 +48,8 @@ Page({
           name: 'addSale',
           data: {
             list: app.data.salelist,
+            user: app.data.user,
+            username: app.data.username,
             flag: true
           },
           complete: res => {
@@ -76,6 +78,8 @@ Page({
           name: 'addSale',
           data: {
             list: app.data.salelist,
+            user: app.data.user,
+            username: app.data.username,
             flag: true
           },
           complete: res => {

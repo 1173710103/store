@@ -32,11 +32,12 @@ Page({
     wx.cloud.callFunction({
       name: 'addHouse',
       data: {
-        name: msg_house.name,
         id: msg_house.id,
+        name: msg_house.name,
+        list: msg_house.list,
         number: msg_house.number,
         price: msg_house.price,
-        list: msg_house.list,
+        totalprice: msg_house.totalprice,
         flag: true
       },
       complete: res => {

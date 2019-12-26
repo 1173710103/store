@@ -42,12 +42,13 @@ Page({
           wx.cloud.callFunction({
             name: 'addUsers',
             data: {
-              age: msg_users.age,
-              carid: msg_users.carid,
-              msgText: msg_users.msgText,
-              id: msg_users.id,
-              headerImg: msg_goods.headerImg,
-              siteImg: msg_goods.siteImg,
+              age: app.data.list_users[i].age,
+              carid: app.data.list_users[i].carid,
+              msgText: app.data.list_users[i].msgText,
+              id: app.data.list_users[i].id,
+              headerImg: app.data.list_users[i].headerImg,
+              siteImg: app.data.list_users[i].siteImg,
+              usertype: app.data.list_users[i].usertype,
               flag: true
             },
             complete: res => {

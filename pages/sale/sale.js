@@ -212,6 +212,8 @@ Page({
           name: 'addSale',
           data: {
             list: app.data.salelist,
+            user: app.data.user,
+            username: app.data.username,
             flag: true
           },
           complete: res => {
@@ -271,6 +273,8 @@ Page({
           name: 'addSale',
           data: {
             list: app.data.salelist,
+            user: app.data.user,
+            username: app.data.username,
             flag: true
           },
           complete: res => {
@@ -298,6 +302,8 @@ Page({
           name: 'addSale',
           data: {
             list: app.data.salelist,
+            user: app.data.user,
+            username: app.data.username,
             flag: true
           },
           complete: res => {
@@ -365,6 +371,9 @@ Page({
               id: app.data.houselist[i].id,
               name: app.data.houselist[i].name,
               list: app.data.houselist[i].list,
+              number: app.data.houselist[i].number,
+              price: app.data.houselist[i].price,
+              totalprice: app.data.houselist[i].totalprice,
               flag: true
             },
             complete: res => {
@@ -393,7 +402,6 @@ Page({
     var height = windowHeight;
     this.setData({ msgList: app.data.salelist[app.data.workerid], height: height,workerid:app.data.workerid});
     console.log(this.data.msgList);
-    wx.cloud.init()
     const db = wx.cloud.database()
     db.collection('goods').orderBy('id', 'asc').get({
       success: res => {
