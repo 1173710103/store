@@ -25,8 +25,8 @@ Page({
     msg_house.price = 0;
     msg_house.list=[];
     app.data.houselist.push(msg_house);
-    wx.navigateBack({
-
+    wx.redirectTo({
+      url:'/pages/houselist/houselist',
     })
 
     wx.cloud.callFunction({

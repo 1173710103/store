@@ -39,10 +39,12 @@ Page({
     app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].price = this.data.price;
     app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].carid = this.data.name;
     app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].number = this.data.number; 
-    wx.navigateBack({
-
+    app.data.houselist[app.data.houseid].list[app.data.goodsinhouse_id].totalprice = parseInt(this.data.number) * parseInt(this.data.price);
+    wx.redirectTo({
+      url: '/pages/house/house',
     })
 
+    var list = app.data.houselist;
     wx.cloud.callFunction({
       // 云函数名称 
       name: 'deleteHouse',
@@ -51,16 +53,16 @@ Page({
         console.log("删除成功")
 
         const db = wx.cloud.database()
-        for (var i = app.data.houselist.length - 1; i >= 0; i--) {
+        for (var i = list.length - 1; i >= 0; i--) {
           wx.cloud.callFunction({
             name: 'addGoodintoHouse',
             data: {
-              id: app.data.houselist[i].id,
-              name: app.data.houselist[i].name,
-              list: app.data.houselist[i].list,
-              number: app.data.houselist[i].number,
-              price: app.data.houselist[i].price,
-              totalprice: app.data.houselist[i].totalprice,
+              id: list[i].id,
+              name: list[i].name,
+              list: list[i].list,
+              number: list[i].number,
+              price: list[i].price,
+              totalprice: list[i].totalprice,
               flag: true
             },
             complete: res => {

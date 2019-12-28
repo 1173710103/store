@@ -264,9 +264,9 @@ Page({
     this.ontouchstart(e);
     this.reflesh();
 
-    app.data.out_price = app.data.out_price + parseInt(app.data.salelist[app.data.workerid][e.target.id].number) * parseInt(app.data.salelist[app.data.workerid][e.target.id].price);
-    app.data.save_price = app.data.save_price - parseInt(app.data.salelist[app.data.workerid][e.target.id].number) * parseInt(app.data.salelist[app.data.workerid][e.target.id].goodselected.price);
-    app.data.win_price = app.data.win_price + parseInt(app.data.salelist[app.data.workerid][e.target.id].profit);
+    // app.data.out_price = app.data.out_price + parseInt(app.data.salelist[app.data.workerid][e.target.id].number) * parseInt(app.data.salelist[app.data.workerid][e.target.id].price);
+    // app.data.save_price = app.data.save_price - parseInt(app.data.salelist[app.data.workerid][e.target.id].number) * parseInt(app.data.salelist[app.data.workerid][e.target.id].goodselected.price);
+    // app.data.win_price = app.data.win_price + parseInt(app.data.salelist[app.data.workerid][e.target.id].profit);
 
     wx.cloud.callFunction({
       // 云函数名称 

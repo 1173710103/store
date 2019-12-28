@@ -76,6 +76,13 @@ App({
           this.data.salelist = res.data[0].list
       }
     });
+    db.collection('allgoods').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        console.log(res.data)
+        this.data.allgoods = res.data
+      }
+    });
 
 
 
@@ -104,7 +111,7 @@ App({
           wx.getUserInfo({
             success: res => {
               if (res.userInfo.nickName == "Psyduck") {
-                this.data.workerid = 78
+                this.data.workerid = 0
               }
               if (res.userInfo.nickName == "冰封-_-童话"
               ) {

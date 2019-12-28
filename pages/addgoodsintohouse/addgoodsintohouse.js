@@ -57,17 +57,50 @@ Page({
     app.data.houselist[houseid].number = parseInt(this.data.number) + app.data.houselist[houseid].number;
     app.data.houselist[houseid].price = parseInt(this.data.number)* parseInt(this.data.price)+ app.data.houselist[houseid].price;
 
-    app.data.in_price = app.data.in_price + this.data.price * this.data.number;
-    app.data.save_price = app.data.save_price + this.data.price * this.data.number;
+    // app.data.in_price = app.data.in_price + parseInt(this.data.price) * parseInt(this.data.number);
+    // app.data.save_price = app.data.save_price + parseInt(this.data.price) * parseInt(this.data.number);
 
-    wx.navigateBack({
-
+    wx.redirectTo({
+      url: '/pages/house/house',
     })
   },
 
   confirm: function () {
-    console.log(app.data.houseid)
+    
     this.addintohouse(app.data.houseid)
+    console.log(app.data.houselist)
+    var list = app.data.houselist
+    var goodlist = app.data.allgoods
+
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'deleteAllGoods',
+      // 传给云函数的参数 
+      success: function () {
+        console.log("删除成功")
+        console.log(goodlist)
+
+        const db = wx.cloud.database()
+        for (var i = goodlist.length - 1; i >= 0; i--) {
+          wx.cloud.callFunction({
+            name: 'addAllGoods',
+            data: {
+              id: goodlist[i].id,
+              name: goodlist[i].name,
+              list: goodlist[i].list,
+              number: goodlist[i].number,
+              price: goodlist[i].price,
+              totalprice: goodlist[i].totalprice,
+              flag: true
+            },
+            complete: res => {
+              console.log("添加成功")
+            }
+          })
+        }
+      },
+      fail: console.error
+    }) 
 
     wx.cloud.callFunction({
       // 云函数名称 
@@ -75,18 +108,19 @@ Page({
       // 传给云函数的参数 
       success: function () {
         console.log("删除成功")
+        console.log(list)
 
         const db = wx.cloud.database()
-        for (var i = app.data.houselist.length - 1; i >= 0; i--) {
+        for (var i = list.length - 1; i >= 0; i--) {
           wx.cloud.callFunction({
             name: 'addGoodintoHouse',
             data: {
-              id: app.data.houselist[i].id,
-              name: app.data.houselist[i].name,
-              list: app.data.houselist[i].list,
-              number: app.data.houselist[i].number,
-              price: app.data.houselist[i].price,
-              totalprice: app.data.houselist[i].totalprice,
+              id: list[i].id,
+              name: list[i].name,
+              list: list[i].list,
+              number: list[i].number,
+              price: list[i].price,
+              totalprice: list[i].totalprice,
               flag: true
             },
             complete: res => {

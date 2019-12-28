@@ -25,7 +25,7 @@ Page({
   touchStartState: 0, // 开始触摸时的状态 0 未显示菜单 1 显示菜单
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
   add: function () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/addgoodsintohouse/addgoodsintohouse',
     })
   },
@@ -193,6 +193,8 @@ Page({
   },
   onDeleteMsgTap: function (e) {
     var start = parseInt(e.target.id.substring(3, e.target.id.length));
+    app.data.houselist[app.data.houseid].number = app.data.houselist[app.data.houseid].number - parseInt(app.data.houselist[app.data.houseid].list[start].number);
+    app.data.houselist[app.data.houseid].price = app.data.houselist[app.data.houseid].price - parseInt(app.data.houselist[app.data.houseid].list[start].totalprice);
     app.data.houselist[app.data.houseid].list.splice(start, 1);
     console.log(start, app.data.houselist[app.data.houseid].list.length);
     for (var i = start; i < app.data.houselist[app.data.houseid].list.length; i++) {

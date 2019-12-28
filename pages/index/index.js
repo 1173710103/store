@@ -51,7 +51,7 @@ Page({
   },
   getUserInfo: function(e) {
     if (e.detail.userInfo.nickName == "Psyduck") {
-      app.data.workerid = 78
+      app.data.workerid = 0
     }
     if (e.detail.userInfo.nickName == "冰封-_-童话"
     ) {

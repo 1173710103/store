@@ -35,21 +35,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var in_price=0;//进货金额
-    // var out_price=0;//销售金额
-    // var save_price=0;//库存积压金额
-    // var win_price=0;//盈利金额
+    console.log(app.data.allgoods)
+    app.data.in_price=0;//进货金额
+    app.data.out_price=0;//销售金额
+    app.data.save_price=0;//库存积压金额
+    app.data.win_price=0;//盈利金额
+    console.log(app.data.allgoods);
     for (var i = 0; i < app.data.allgoods.length; i++) {
-      app.data.in_price = app.data.in_price + app.data.allgoods[i].price;
+      app.data.in_price = app.data.in_price + parseInt(app.data.allgoods[i].price);
     }
     for (var i = 0; i < app.data.salelist[2].length; i++) {
-      app.data.out_price = app.data.out_price + app.data.salelist[2][i].price * app.data.salelist[2][i].number;
+      app.data.out_price = app.data.out_price + parseInt(app.data.salelist[2][i].price) * parseInt(app.data.salelist[2][i].number);
     }
     for (var i = 0; i < app.data.houselist.length; i++) {
-      app.data.save_price = app.data.save_price + app.data.houselist[i].price;
+      app.data.save_price = app.data.save_price + parseInt(app.data.houselist[i].price);
     }
     for (var i = 0; i < app.data.salelist[2].length; i++) {
-      app.data.out_price = app.data.out_price + app.data.salelist[2][i].profit;
+      app.data.out_price = app.data.out_price + parseInt(app.data.salelist[2][i].profit);
     }
     this.setData({
       in_price: app.data.in_price,//进货金额
@@ -70,7 +72,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**

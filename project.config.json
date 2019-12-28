@@ -15,7 +15,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.8.0",
 	"appid": "wx92fdcbcd5764d581",
-	"projectname": "%E5%A4%A7%E4%BD%9C%E4%B8%9A",
+	"projectname": "store",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
