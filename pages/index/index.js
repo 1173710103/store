@@ -50,15 +50,14 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
-    if(e.detail.userInfo.nickName == "Psyduck"){
-      app.data.workerid = 0
+    if (e.detail.userInfo.nickName == "Psyduck") {
+      app.data.workerid = 78
     }
     if (e.detail.userInfo.nickName == "冰封-_-童话"
-) {
+    ) {
       app.data.workerid = 1
     }
-    console.log(app.data.wokerid)
+    console.log(app.data.workerid)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

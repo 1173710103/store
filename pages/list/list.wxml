@@ -8,3 +8,9 @@
 <view>
   <button class = 'salebtn' bindtap='sale'>销售管理</button>
 </view>
+<view class='content'>
+  <text>进货:{{in_price}}</text>
+  <text>销售:{{out_price}}</text>
+  <text>积压:{{save_price}}</text>
+  <text>盈利:{{win_price}}</text>
+</view>

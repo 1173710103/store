@@ -5,8 +5,8 @@ App({
     deviceInfo: {},
     list_goods:[],
     list_users:[],
-    goodselected:{},
-    userselected: {},
+    goodselected:{},//添加sale时，被选的good
+    userselected: {},//添加sale时，被选的user
     username:'',
     house_id:0,//命名原则正好和good和user相反
     good_id:'',
@@ -20,12 +20,16 @@ App({
     houseid : 0,
     workerid:0,
     saleid:-1,
+    allgoods:[],
     houselist: [
-      { name: null, id: null, list: [] }
+      { name: null, id: null, list: [] ,number:null,price:null}
     ],
     salelist:[],
     addoredit:0,
-    prifit:0
+    in_price:0,//进货金额
+    out_price:0,//销售金额
+    save_price:0,//库存积压金额
+    win_price:0//盈利金额
   },
   onLaunch: function () {
     // var sale = {};
@@ -40,28 +44,29 @@ App({
     // this.data.list_worker_1.push(sale);
 
     wx.cloud.init()
-    const db = wx.cloud.database()
+    const db = wx.cloud.database();
     db.collection('goods').orderBy('id', 'asc').get({
       success: res => {
         //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
         //console.log(res.data)
         this.data.list_goods = res.data
       }
-    }),
+    });
     db.collection('users').orderBy('id', 'asc').get({
       success: res => {
         //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
         console.log(res.data)
         this.data.list_users = res.data
       }
-    }),
+    });
     db.collection('house_list').orderBy('id', 'asc').get({
       success: res => {
         //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
         //console.log(res.data)
         this.data.houselist = res.data
       }
-    }),
+    });
+    console.log(this.data.houselist);//????空的
     // console.log("!!!")
     db.collection('sale_list').orderBy('id', 'asc').get({
         success: res => {
@@ -70,9 +75,10 @@ App({
         if(res.data.length!=0)
           this.data.salelist = res.data[0].list
       }
-    }),
+    });
 
-    
+
+
     // this.data.houselist.push(this.data.list_house);
     // this.data.houselist.push(this.data.list_house1);
     this.data.salelist.push(this.data.list_worker_0);
@@ -97,6 +103,14 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              if (res.userInfo.nickName == "Psyduck") {
+                this.data.workerid = 78
+              }
+              if (res.userInfo.nickName == "冰封-_-童话"
+              ) {
+                this.data.workerid = 1
+              }
+              console.log(this.data.workerid)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
 

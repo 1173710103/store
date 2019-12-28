@@ -10,9 +10,7 @@ Page({
     name: '',
     price: '',
     number:'',
-    state: -1,
-    nowprice: '',
-    nowname: ''
+    state: -1
   },
 
   input_name: function (in_name) {
@@ -53,10 +51,15 @@ Page({
       goodsinhouse.headerImg = '../../images/tab/a1.png';
       goodsinhouse.siteImg = '../../img/site.png';
       app.data.houselist[houseid].list.push(goodsinhouse);
+      app.data.allgoods.push(goodsinhouse);
     }
-    console.log(app.data.houselist[houseid]);
+    console.log(app.data.houselist);
     app.data.houselist[houseid].number = parseInt(this.data.number) + app.data.houselist[houseid].number;
     app.data.houselist[houseid].price = parseInt(this.data.number)* parseInt(this.data.price)+ app.data.houselist[houseid].price;
+
+    app.data.in_price = app.data.in_price + this.data.price * this.data.number;
+    app.data.save_price = app.data.save_price + this.data.price * this.data.number;
+
     wx.navigateBack({
 
     })
