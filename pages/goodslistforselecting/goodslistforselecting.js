@@ -15,7 +15,7 @@ Page({
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
 
   click: function (e) {
-    console.log(e.target.id)
+    //console.log(e.target.id)
     app.data.goodselected = this.data.msgList[parseInt(e.target.id.substring(3, e.target.id.length))];
     if(app.data.addoredit == 0){
       wx.redirectTo({

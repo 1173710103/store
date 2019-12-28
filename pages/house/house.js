@@ -40,7 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.data.houseid);
+    //console.log(app.data.houseid);
     if (options && options.searchValue) {
       this.setData({
         searchValue:options.searchValue
@@ -57,7 +57,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),
@@ -196,11 +196,11 @@ Page({
     app.data.houselist[app.data.houseid].number = app.data.houselist[app.data.houseid].number - parseInt(app.data.houselist[app.data.houseid].list[start].number);
     app.data.houselist[app.data.houseid].price = app.data.houselist[app.data.houseid].price - parseInt(app.data.houselist[app.data.houseid].list[start].totalprice);
     app.data.houselist[app.data.houseid].list.splice(start, 1);
-    console.log(start, app.data.houselist[app.data.houseid].list.length);
+    //console.log(start, app.data.houselist[app.data.houseid].list.length);
     for (var i = start; i < app.data.houselist[app.data.houseid].list.length; i++) {
       app.data.houselist[app.data.houseid].list[i].msgText = '序号000' + i;
       app.data.houselist[app.data.houseid].list[i].id = "id-" + i;
-      console.log(app.data.houselist[app.data.houseid].list[i]);
+      //console.log(app.data.houselist[app.data.houseid].list[i]);
     }
     console.log(app.data.houselist[app.data.houseid].list);
     this.setData({
@@ -244,7 +244,7 @@ Page({
   },
   onMarkMsgTap: function (e) {
     app.data.goodinhouse_id = parseInt(e.target.id.substring(3, e.target.id.length));
-    console.log(app.data.goodinhouse_id);
+    //console.log(app.data.goodinhouse_id);
     wx.navigateTo({
       url: '/pages/editgoodsinhouse/editgoodsinhouse',
     })
@@ -322,7 +322,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),

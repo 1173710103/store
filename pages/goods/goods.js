@@ -56,7 +56,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),
@@ -75,7 +75,14 @@ Page({
           if (res.data.length != 0)
             app.data.salelist = res.data[0].list
         }
-      })
+      }),
+      db.collection('allgoods').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data)
+          app.data.allgoods = res.data
+        }
+      });
   },
 
   ontouchstart: function (e) {
@@ -83,7 +90,7 @@ Page({
       this.touchStartState = 1;
       this.showState = 0;
       this.moveX = 0;
-      console.log(this.lastShowMsgId)
+      //console.log(this.lastShowMsgId)
       this.translateXMsgItem(this.lastShowMsgId, 0, 200);
       this.lastShowMsgId = "";
       return;
@@ -111,7 +118,7 @@ Page({
     }
     //未触发滑动方向
     if (this.swipeDirection === 0) {
-      console.log(Math.abs(moveY));
+      //console.log(Math.abs(moveY));
       //触发垂直操作
       if (Math.abs(moveY) > 4) {
         this.swipeDirection = 2;
@@ -186,13 +193,13 @@ Page({
   onDeleteMsgTap: function (e) {
     var start = parseInt(e.target.id.substring(3, e.target.id.length));
     app.data.list_goods.splice(start,1);
-    console.log(start, app.data.list_goods.length);
+    //console.log(start, app.data.list_goods.length);
     for (var i = start ; i < app.data.list_goods.length; i++) {
       app.data.list_goods[i].msgText = '序号000' + i;
       app.data.list_goods[i].id = "id-" + i;
-      console.log(app.data.list_goods[i]);
+      //console.log(app.data.list_goods[i]);
     }
-    console.log(app.data.list_goods);
+    //console.log(app.data.list_goods);
     this.setData({
       msgList: app.data.list_goods
     })
@@ -245,7 +252,7 @@ Page({
   },
   getItemIndex: function (id) {
     var msgList = this.data.msgList;
-    console.log(msgList)
+    //console.log(msgList)
     for (var i = 0; i < msgList.length; i++) {
       if (msgList[i].id == id) {
         return i;
@@ -273,7 +280,7 @@ Page({
   },
   animationMsgItem: function (id, animation) {
     var index = this.getItemIndex(id);
-    console.log(index);
+    //console.log(index);
     var param = {};
     var indexString = 'msgList[' + index + '].animation';
     param[indexString] = animation.export();
@@ -302,7 +309,7 @@ Page({
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
     this.setData({msgList: app.data.list_goods, height: height });
-    console.log(this.data.msgList);
+    //console.log(this.data.msgList);
 
     wx.cloud.init()
     const db = wx.cloud.database()

@@ -44,7 +44,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.data.workerid)
+    //console.log(app.data.workerid)
     wx.cloud.init()
     const db = wx.cloud.database()
     db.collection('goods').orderBy('id', 'asc').get({
@@ -57,7 +57,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),
@@ -90,7 +90,7 @@ Page({
       this.touchStartState = 1;
       this.showState = 0;
       this.moveX = 0;
-      console.log(this.lastShowMsgId)
+      //console.log(this.lastShowMsgId)
       this.translateXMsgItem(this.lastShowMsgId, 0, 200);
       this.lastShowMsgId = "";
       return;
@@ -118,7 +118,7 @@ Page({
     }
     //未触发滑动方向
     if (this.swipeDirection === 0) {
-      console.log(Math.abs(moveY));
+      //console.log(Math.abs(moveY));
       //触发垂直操作
       if (Math.abs(moveY) > 4) {
         this.swipeDirection = 2;
@@ -254,7 +254,7 @@ Page({
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
     this.setData({ msgList: app.data.salelist[app.data.workerid], height: height, workerid: app.data.workerid });
-    console.log(this.data.msgList);
+    //console.log(this.data.msgList);
   },
   onYesTap: function (e) {
     app.data.salelist[app.data.workerid - 1][e.target.id].state = 3;
@@ -358,7 +358,11 @@ Page({
     for (var i = 0; i < app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list.length;i++){
       if (app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].id == app.data.salelist[app.data.workerid][e.target.id].goodselected.id){
         app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number - app.data.salelist[app.data.workerid][e.target.id].number;
-        console.log(app.data.salelist[app.data.workerid][e.target.id].number);
+        // app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].number = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].number - app.data.salelist[app.data.workerid][e.target.id].number;
+        // app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].price = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].price - app.data.salelist[app.data.workerid][e.target.id].number * app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].price;
+        app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].price = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].price - app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].number * app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].list[i].price;
+        app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].number = app.data.houselist[app.data.salelist[app.data.workerid][e.target.id].houseselectedid].number - app.data.salelist[app.data.workerid][e.target.id].number;
+        //console.log(app.data.salelist[app.data.workerid][e.target.id].number);
         break;
       }
     }
@@ -406,7 +410,7 @@ Page({
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
     this.setData({ msgList: app.data.salelist[app.data.workerid], height: height,workerid:app.data.workerid});
-    console.log(this.data.msgList);
+    //console.log(this.data.msgList);
     const db = wx.cloud.database()
     db.collection('goods').orderBy('id', 'asc').get({
       success: res => {
@@ -418,7 +422,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),
@@ -436,6 +440,13 @@ Page({
           //console.log(res.data.length)
           if (res.data.length != 0)
             app.data.salelist = res.data[0].list
+        }
+      }),
+      db.collection('allgoods').orderBy('id', 'asc').get({
+        success: res => {
+          //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+          //console.log(res.data)
+          app.data.allgoods = res.data
         }
       })
   },

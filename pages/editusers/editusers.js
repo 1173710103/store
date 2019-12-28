@@ -37,7 +37,7 @@ Page({
         console.log("删除成功")
 
         const db = wx.cloud.database()
-        console.log(app.data.list_users)
+        //console.log(app.data.list_users)
         for (var i = app.data.list_users.length - 1; i >= 0; i--) {
           wx.cloud.callFunction({
             name: 'addUsers',

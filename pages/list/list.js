@@ -13,19 +13,19 @@ Page({
     win_price: 0//盈利金额
   },
   goods_message: function () {
-    console.log("message")
+    //console.log("message")
     wx.switchTab({
       url: "/pages/goods/goods",
     })
   },
   house: function () {
-    console.log("house")
+    //console.log("house")
     wx.navigateTo({
       url: "/pages/houselist/houselist",
     })
   },
   sale: function () {
-    console.log("sale")
+    //console.log("sale")
     wx.navigateTo({
       url: "/pages/sale/sale",
     })
@@ -35,14 +35,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.data.allgoods)
+    //console.log(app.data.allgoods)
     app.data.in_price=0;//进货金额
     app.data.out_price=0;//销售金额
     app.data.save_price=0;//库存积压金额
     app.data.win_price=0;//盈利金额
-    console.log(app.data.allgoods);
+    //console.log(app.data.allgoods);
     for (var i = 0; i < app.data.allgoods.length; i++) {
-      app.data.in_price = app.data.in_price + parseInt(app.data.allgoods[i].price);
+      app.data.in_price = app.data.in_price + parseInt(app.data.allgoods[i].price) * parseInt(app.data.allgoods[i].number);
     }
     for (var i = 0; i < app.data.salelist[2].length; i++) {
       app.data.out_price = app.data.out_price + parseInt(app.data.salelist[2][i].price) * parseInt(app.data.salelist[2][i].number);
@@ -51,7 +51,7 @@ Page({
       app.data.save_price = app.data.save_price + parseInt(app.data.houselist[i].price);
     }
     for (var i = 0; i < app.data.salelist[2].length; i++) {
-      app.data.out_price = app.data.out_price + parseInt(app.data.salelist[2][i].profit);
+      app.data.win_price = app.data.win_price + parseInt(app.data.salelist[2][i].profit);
     }
     this.setData({
       in_price: app.data.in_price,//进货金额

@@ -32,16 +32,6 @@ App({
     win_price:0//盈利金额
   },
   onLaunch: function () {
-    // var sale = {};
-    // sale.name = '1';
-    // sale.number = '1';
-    // sale.price = '2';
-    // sale.profit = '2';
-    // sale.id = 0;
-    // sale.state = 1;
-    // sale.goodselected = { id: 'id-0', number: 10, };
-    // sale.houseselectedid = 0;
-    // this.data.list_worker_1.push(sale);
 
     wx.cloud.init()
     const db = wx.cloud.database();
@@ -55,7 +45,7 @@ App({
     db.collection('users').orderBy('id', 'asc').get({
       success: res => {
         //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-        console.log(res.data)
+        //console.log(res.data)
         this.data.list_users = res.data
       }
     });
@@ -66,7 +56,7 @@ App({
         this.data.houselist = res.data
       }
     });
-    console.log(this.data.houselist);//????空的
+    //console.log(this.data.houselist);//????空的
     // console.log("!!!")
     db.collection('sale_list').orderBy('id', 'asc').get({
         success: res => {
@@ -79,7 +69,7 @@ App({
     db.collection('allgoods').orderBy('id', 'asc').get({
       success: res => {
         //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-        console.log(res.data)
+        //console.log(res.data)
         this.data.allgoods = res.data
       }
     });
@@ -117,7 +107,7 @@ App({
               ) {
                 this.data.workerid = 1
               }
-              console.log(this.data.workerid)
+             // console.log(this.data.workerid)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
 

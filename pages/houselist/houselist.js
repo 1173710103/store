@@ -50,7 +50,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),
@@ -69,7 +69,14 @@ Page({
           if (res.data.length != 0)
             app.data.salelist = res.data[0].list
         }
-      })
+      }),
+    db.collection('allgoods').orderBy('id', 'asc').get({
+      success: res => {
+        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
+        //console.log(res.data)
+        app.data.allgoods = res.data
+      }
+    })
   },
 
   ontouchstart: function (e) {
@@ -183,9 +190,9 @@ Page({
     console.log(start, app.data.houselist.length);
     for (var i = start; i < app.data.houselist.length; i++) {
       app.data.houselist[i].id = i;
-      console.log(app.data.houselist[i]);
+      //console.log(app.data.houselist[i]);
     }
-    console.log(app.data.houselist);
+    //console.log(app.data.houselist);
     this.setData({
       msgList: app.data.houselist
     })
@@ -201,7 +208,7 @@ Page({
         console.log("删除成功")
 
         const db = wx.cloud.database()
-        console.log(app.data.houselist)
+        //console.log(app.data.houselist)
         for (var i = app.data.houselist.length - 1; i >= 0; i--) {
           wx.cloud.callFunction({
             name: 'addUsers',
@@ -238,7 +245,7 @@ Page({
     console.log(e);
   },
   getItemIndex: function (id) {
-    console.log(id);
+    //console.log(id);
     var msgList = this.data.msgList;
     for (var i = 0; i < msgList.length; i++) {
       console.log(msgList[i].id);
@@ -268,7 +275,7 @@ Page({
   },
   animationMsgItem: function (id, animation) {
     var index = this.getItemIndex(id);
-    console.log(index);
+    //console.log(index);
     var param = {};
     var indexString = 'msgList[' + index + '].animation';
     param[indexString] = animation.export();
@@ -297,7 +304,7 @@ Page({
     var windowHeight = app.data.deviceInfo.windowHeight;
     var height = windowHeight;
     this.setData({ msgList: app.data.houselist, height: height });
-    console.log(this.data.msgList);
+    //console.log(this.data.msgList);
     wx.cloud.init()
     const db = wx.cloud.database()
     db.collection('goods').orderBy('id', 'asc').get({
@@ -310,7 +317,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),
