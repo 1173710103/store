@@ -323,7 +323,7 @@ Page({
       db.collection('users').orderBy('id', 'asc').get({
         success: res => {
           //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值  
-          console.log(res.data)
+          //console.log(res.data)
           app.data.list_users = res.data
         }
       }),
